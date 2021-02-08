@@ -31,9 +31,15 @@ mention = api.mentions_timeline(
 
 # print(mention[0].__dict__.keys())  # printing keys of the dictionary
 # print(mention[0].full_text)  # printing text of the tweet
+# print(mention[4].id)  # printing id
 
 for singleMention in reversed(mention):
     print(str(singleMention.id) + ' - ' + singleMention.full_text)  # printing all my tweets
+    last_seen_id = singleMention.id
+    store_last_seen_id(last_seen_id, FILE_NAME)
     if 'hello friend' in singleMention.full_text.lower():
         print('Found something')
+        api.update_status('@' + singleMention.user.screen_name +
+                          ' Hello Friend, maybe I should give a name to you'
+                          ', but again that\'s a slippery slope.', singleMention.id)
 
