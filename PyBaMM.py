@@ -53,7 +53,7 @@ plt.savefig('foo.png', bbox_inches='tight') # Saving the graph
 # PyBaMM model ends
 
 
-def plot_graph():
+def tweet_graph():
 
     media = api.media_upload('foo.png')
     tweet = 'test again'
@@ -63,6 +63,6 @@ def plot_graph():
 
 while True:
     print('Tweeting....')
-    plot_graph()
+    tweet_graph()
     time.sleep(5)
 
