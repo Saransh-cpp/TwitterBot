@@ -28,3 +28,7 @@ def tweet_graph():
 
     api.update_status(status=tweet, media_ids=[media.media_id])
 
+while True:
+    print('Tweeting....')
+    tweet_graph()
+    time.sleep(5)
