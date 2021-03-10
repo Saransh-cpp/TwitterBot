@@ -1,0 +1,5 @@
+298.15)
+        # print(ambient_temp)
+        # initial_temp = random.uniform(273.18, 298.15)
+        # print(initial_temp)
+        # reference_temp = random.uniform(273.18, 298.15)
