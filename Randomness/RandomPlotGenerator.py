@@ -2,6 +2,7 @@ import pybamm
 import random
 import sys
 import importlib.util
+
 spec = importlib.util.spec_from_file_location("Chen2020params.py", "Models/Chen2020Params.py")
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
@@ -22,5 +23,3 @@ def random_plot_generator():
             ambient_temp=ambient_temp, initial_temp=initial_temp,
             reference_temp=reference_temp)
             break
-
-random_plot_generator()

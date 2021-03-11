@@ -32,6 +32,6 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
         while True:
             lower_limit = random.randint(0, len(output_variables))
             upper_limit = random.randint(0, len(output_variables))
-            if upper_limit - lower_limit < 9 and upper_limit - lower_limit > 0:
+            if upper_limit - lower_limit < 9 and upper_limit - lower_limit > 2:
                 sim.plot(output_variables=output_variables[lower_limit:upper_limit])
                 break
