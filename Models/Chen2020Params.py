@@ -18,8 +18,8 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = pybamm.ParameterValues(chemistry=chemistry)
-    # print(parameter_values)
-    print(parameter_values.search("Charge"))
+    print(parameter_values)
+    # print(parameter_values.search("Charge"))
     # model.variables.search("rate")
 
     parameter_values["Current function [A]"] = current_function
@@ -42,11 +42,11 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
 def random_plot_generator():
 
     while True:
-        current_function = random.randint(0, 10)
+        current_function = random.randint(0, 1000)
         print(current_function)
-        upper_voltage = random.randint(0, 10)
+        upper_voltage = random.randint(0, 1000)
         print(upper_voltage)
-        lower_voltage = random.randint(0, 10)
+        lower_voltage = random.randint(0, 1000)
         print(lower_voltage)
         ambient_temp = random.uniform(273.18, 298.15)
         print(ambient_temp)
