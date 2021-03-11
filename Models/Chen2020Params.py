@@ -27,16 +27,17 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
     sim.solve([0, 3600])
     plot_type = random.randint(0, 1)
     if plot_type == 0:
+        # sim.save('foo')
         sim.plot()
-        # plt.savefig('foo.png', bbox_inches='tight') # Saving the graph
+        # sim.save('foo')
     else:
         while True:
             lower_limit = random.randint(0, len(output_variables))
             upper_limit = random.randint(0, len(output_variables))
             if upper_limit - lower_limit < 9 and upper_limit - lower_limit > 2:
-                # plt.plot()
+                # sim.save('foo')
                 sim.plot(output_variables=output_variables[lower_limit:upper_limit])
-                # plt.savefig('foo.png', bbox_inches='tight') # Saving the graph
+                # sim.save('foo')
                 break
 
     return parameter_values
