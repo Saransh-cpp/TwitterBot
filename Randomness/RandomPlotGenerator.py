@@ -18,8 +18,10 @@ def random_plot_generator():
         reference_temp = random.uniform(273.18, 298.15)
         
         if lower_voltage < upper_voltage:
-            foo.Chen2020Modelling(current_function=current_function,
+            parameter_values = foo.Chen2020Modelling(current_function=current_function,
             lower_voltage=lower_voltage, upper_voltage=upper_voltage,
             ambient_temp=ambient_temp, initial_temp=initial_temp,
             reference_temp=reference_temp)
             break
+
+    return parameter_values
