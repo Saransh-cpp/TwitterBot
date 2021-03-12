@@ -29,9 +29,12 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
 
     sim = pybamm.Simulation(model, parameter_values=parameter_values)
     sim.solve([0, 3600])
+    solution = sim.solution
+    t = solution["Time [s]"]
+    final_time = int(t.entries[len(t.entries) - 1])
     plot_type = random.randint(0, 1)
-    time = random.randint(0, 3000)
-    print(time)
+    time = random.randint(0, final_time)
+    print(time, plot_type)
     if plot_type == 0:
         plot = pybamm.QuickPlot(sim, time_unit='seconds')
         plot.plot(time)

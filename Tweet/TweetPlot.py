@@ -29,17 +29,17 @@ def tweet_graph():
     # + 'with parameter values: ' + str(parameter_values)
 
     # Uncomment to tweet
-    # media = api.media_upload('fooimage.png')
-    # test_string = 'This is a test. ' + info_string 
-    # tweet = test_string
+    media = api.media_upload('fooimage.png')
+    test_string = 'Testing bug fixes. The script will run for a few hours and then I will stop it:). ' + info_string 
+    tweet = test_string
 
-    # api.update_status(status=tweet, media_ids=[media.media_id])
+    api.update_status(status=tweet, media_ids=[media.media_id])
 
 # Simulate tweeting process
 while True:
     print('Tweeting....')
     tweet_graph()
-    time.sleep(10)
+    time.sleep(60)
 
 # Uncomment to run the code only once
 # tweet_graph()
