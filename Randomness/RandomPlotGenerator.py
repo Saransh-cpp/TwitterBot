@@ -10,7 +10,7 @@ spec.loader.exec_module(foo)
 def random_plot_generator():
 
     while True:
-        current_function = random.uniform(0, 10)
+        current_function = random.uniform(2, 7)
         upper_voltage = random.uniform(2.5, 4.2)
         lower_voltage = random.uniform(2.5, 4.2)
         ambient_temp = random.uniform(273.18, 298.15)

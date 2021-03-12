@@ -26,7 +26,7 @@ def tweet_graph():
 
     parameter_values = foo1.random_plot_generator()
     info_string = foo2.information('Chen2020') + str(parameter_values)
-    print(info_string)
+    # print(info_string)
 
     # Uncomment to tweet
     # media = api.media_upload('foo.png')
@@ -34,8 +34,10 @@ def tweet_graph():
 
     # api.update_status(status=tweet, media_ids=[media.media_id])
 
+# Uncomment to simulate tweeting process
+# while True:
+#     print('Tweeting....')
+#     tweet_graph()
+#     time.sleep(5)
 
-while True:
-    print('Tweeting....')
-    tweet_graph()
-    time.sleep(5)
+tweet_graph()
