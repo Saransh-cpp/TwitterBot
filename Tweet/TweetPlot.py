@@ -29,15 +29,16 @@ def tweet_graph():
     # print(info_string)
 
     # Uncomment to tweet
-    # media = api.media_upload('foo.png')
+    # media = api.media_upload('fooimage.png')
     # tweet = info_string
 
     # api.update_status(status=tweet, media_ids=[media.media_id])
 
-# Uncomment to simulate tweeting process
-# while True:
-#     print('Tweeting....')
-#     tweet_graph()
-#     time.sleep(5)
+# Simulate tweeting process
+while True:
+    print('Tweeting....')
+    tweet_graph()
+    time.sleep(10)
 
-tweet_graph()
+# Uncomment to run the code only once
+# tweet_graph()
