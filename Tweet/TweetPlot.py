@@ -24,13 +24,14 @@ api = tweepy.API(auth)
 
 def tweet_graph():
 
-    parameter_values = foo1.random_plot_generator()
-    info_string = foo2.information('Chen2020') + str(parameter_values)
-    # print(info_string)
+    parameter_values, time_of_png = foo1.random_plot_generator()
+    info_string = foo2.information('Chen2020') + ' at time =' + str(time_of_png) 
+    # + 'with parameter values: ' + str(parameter_values)
 
     # Uncomment to tweet
     # media = api.media_upload('fooimage.png')
-    # tweet = info_string
+    # test_string = 'This is a test. ' + info_string 
+    # tweet = test_string
 
     # api.update_status(status=tweet, media_ids=[media.media_id])
 

@@ -48,4 +48,4 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
                 pdf_to_png('foo.pdf')
                 break
 
-    return parameter_values
+    return parameter_values, time
