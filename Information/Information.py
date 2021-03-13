@@ -1,3 +1,5 @@
-def information(model_name):
-    if model_name == 'Chen2020':
+def information(parameter_number):
+    if parameter_number == 0:
         return "This is some basic information about Chen2020 parameters in a simple DFN model plotted using PyBaMM"
+    elif parameter_number == 1:
+        return "This is some basic information about Marquis2019 parameters in a simple DFN model plotted using PyBaMM"

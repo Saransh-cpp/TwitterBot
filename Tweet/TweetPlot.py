@@ -14,7 +14,7 @@ spec1 = importlib.util.spec_from_file_location("RandomPlotGenerator.py", "Random
 foo1 = importlib.util.module_from_spec(spec1)
 spec1.loader.exec_module(foo1)
 
-spec2 = importlib.util.spec_from_file_location("RandomPlotGenerator.py", "Information/Information.py")
+spec2 = importlib.util.spec_from_file_location("Information.py", "Information/Information.py")
 foo2 = importlib.util.module_from_spec(spec2)
 spec2.loader.exec_module(foo2)
 
@@ -25,13 +25,14 @@ api = tweepy.API(auth)
 
 def tweet_graph():
 
-    parameter_values, time_of_png = foo1.random_plot_generator()
-    info_string = foo2.information('Chen2020') + ' at time =' + str(time_of_png) 
+    parameter_values, time_of_png, parameter_number = foo1.random_plot_generator()
+    print(time_of_png)
+    info_string = foo2.information(parameter_number) + ' at time = ' + str(time_of_png) 
     # + 'with parameter values: ' + str(parameter_values)
 
     # Uncomment to tweet
     media = api.media_upload('fooimage.png')
-    test_string = 'Fixed the issue with time value. The script will run for a few hours and then I will stop it:). ' + info_string 
+    test_string = 'Added new parameter values. The script will run for a few hours and then I will stop it:). ' + info_string 
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
@@ -43,7 +44,7 @@ def tweet_graph():
 while True:
     print('Tweeting....')
     tweet_graph()
-    time.sleep(30)
+    time.sleep(60)
 
 # Uncomment to run the code only once
 # tweet_graph()
