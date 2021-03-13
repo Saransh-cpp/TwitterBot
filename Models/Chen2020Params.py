@@ -2,11 +2,7 @@ import pybamm
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-from pdf2image import convert_from_path
 
-def pdf_to_png(path):
-    page = convert_from_path(path)
-    page[0].save('fooimage' + '.png', 'PNG')
 
 def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
                         ambient_temp, initial_temp, reference_temp):
@@ -30,25 +26,5 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
     sim = pybamm.Simulation(model, parameter_values=parameter_values)
     sim.solve([0, 3600])
     solution = sim.solution
-    t = solution["Time [s]"]
-    final_time = int(t.entries[len(t.entries) - 1])
-    plot_type = random.randint(0, 1)
-    time = random.randint(0, final_time)
-    print(time, plot_type)
-    if plot_type == 0:
-        plot = pybamm.QuickPlot(sim, time_unit='seconds')
-        plot.plot(time)
-        plot.fig.savefig("foo.pdf", dpi=300)
-        pdf_to_png('foo.pdf')
-    else:
-        while True:
-            lower_limit = random.randint(0, len(output_variables))
-            upper_limit = random.randint(0, len(output_variables))
-            if upper_limit - lower_limit < 9 and upper_limit - lower_limit > 2:
-                plot = pybamm.QuickPlot(sim, output_variables=output_variables[lower_limit:upper_limit], time_unit='seconds')
-                plot.plot(time)
-                plot.fig.savefig("foo.pdf", dpi=300)
-                pdf_to_png('foo.pdf')
-                break
 
-    return parameter_values, time
+    return parameter_values, sim, solution, output_variables

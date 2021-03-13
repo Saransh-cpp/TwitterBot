@@ -31,7 +31,7 @@ def tweet_graph():
 
     # Uncomment to tweet
     media = api.media_upload('fooimage.png')
-    test_string = 'Testing bug fixes. The script will run for a few hours and then I will stop it:). ' + info_string 
+    test_string = 'Fixed the issue with time value. The script will run for a few hours and then I will stop it:). ' + info_string 
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
@@ -43,7 +43,7 @@ def tweet_graph():
 while True:
     print('Tweeting....')
     tweet_graph()
-    time.sleep(60)
+    time.sleep(30)
 
 # Uncomment to run the code only once
 # tweet_graph()
