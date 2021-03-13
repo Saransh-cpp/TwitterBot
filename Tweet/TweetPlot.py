@@ -3,6 +3,7 @@ import tweepy
 import time
 import matplotlib.pyplot as plt
 import importlib.util
+import os
 
 
 spec = importlib.util.spec_from_file_location("Chen2020params.py", "keys.py")
@@ -34,6 +35,9 @@ def tweet_graph():
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
+
+    os.remove('fooimage.png')
+    os.remove('foo.pdf')
 
 # Simulate tweeting process
 while True:
