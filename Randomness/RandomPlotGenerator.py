@@ -16,7 +16,7 @@ def random_plot_generator():
     while True:
 
         parameter_sets = ['Chen2020', 'Marquis2019', 'Ecker2015', 'Mohtat2020']
-        parameter_number = (0, 1)
+        parameter_number = random.randint(0, 1)
 
         if parameter_number == 0:
             current_function = random.uniform(0, 10)
@@ -27,7 +27,7 @@ def random_plot_generator():
             reference_temp = random.uniform(273.18, 298.15)
 
         elif parameter_number == 1:
-            current_function = random.uniform(0, 5)
+            current_function = random.uniform(0, 2)
             upper_voltage = random.uniform(3.1, 4.1)
             lower_voltage = random.uniform(3.1, 4.1)
             ambient_temp = random.uniform(273.18, 298.15)
