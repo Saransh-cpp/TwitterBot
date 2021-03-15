@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import importlib.util
 import os
 
-
 spec = importlib.util.spec_from_file_location("Chen2020params.py", "keys.py")
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
@@ -32,19 +31,20 @@ def tweet_graph():
 
     # Uncomment to tweet
     media = api.media_upload('fooimage.png')
-    test_string = 'Added new parameter values. The script will run for a few hours and then I will stop it:). ' + info_string 
+    test_string = 'Added new parameter values. Script source code - https://github.com/Saransh-cpp/TwitterBot ' + info_string 
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
 
     os.remove('fooimage.png')
     os.remove('foo.pdf')
+    plt.clf()
 
 # Simulate tweeting process
 while True:
     print('Tweeting....')
     tweet_graph()
-    time.sleep(60)
+    time.sleep(15)
 
 # Uncomment to run the code only once
 # tweet_graph()

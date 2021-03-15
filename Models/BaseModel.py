@@ -4,10 +4,20 @@ import matplotlib.pyplot as plt
 import random
 
 
-def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
-                        ambient_temp, initial_temp, reference_temp):
+def BaseModel(current_function, lower_voltage, upper_voltage,
+                        ambient_temp, initial_temp, reference_temp,
+                        parameter_number):
+    
+    
 
-    chemistry = pybamm.parameter_sets.Chen2020
+    if parameter_number == 0:
+        chemistry = pybamm.parameter_sets.Chen2020
+    elif parameter_number == 1:
+        chemistry = pybamm.parameter_sets.Marquis2019
+    elif parameter_number == 2:
+        chemistry = pybamm.parameter_sets.Ecker2015
+    elif parameter_number == 3:
+        chemistry = pybamm.parameter_sets.Mohtat2020
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = pybamm.ParameterValues(chemistry=chemistry)
@@ -27,4 +37,4 @@ def Chen2020Modelling(current_function, lower_voltage, upper_voltage,
     sim.solve([0, 3600])
     solution = sim.solution
 
-    return parameter_values, sim, solution, output_variables
+    return parameter_values, sim, solution, output_variables, parameter_number
