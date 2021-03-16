@@ -6,52 +6,53 @@ import random
 
 def experiment_func():
 
-    charge = []
-    discharge = []
-    rest = []
+    chargeC = []
+    dischargeC = []
+    restC = []
 
     for i in range(1, 100):
 
-        if i%10 != 0:
-            discharge.append(
-                "Discharge at 0.5 C for " + str(i%10) + " minutes",
+        if i % 20 != 0 and i % 50 != 0:
+            dischargeC.append(
+                [
+                    "Discharge at 0.5 C for " + str(i % 20) + " minutes",
+                    "Discharge at 1 A for " + str(i % 50) + " seconds",
+                ]
             )
-            # "Discharge at C/20 for 0.5 hours",
-            # "Discharge at 1 A for 90 seconds",
-            # "Discharge at 1 W for 0.5 hours",
 
-            charge.append("Charge at 0.5 C for " + str(i%10) + " minutes")
-            # "Charge at 200mA for 45 minutes (1 minute period)",
-            # "Charge at 200 mW for 45 minutes",
-            # "Charge at 1 C until 4.1V",
+            chargeC.append(
+                [
+                    "Charge at 0.5 C for " + str(i % 20) + " minutes",
+                    "Charge at 200mA for " + str(i % 20) + " minutes (1 minute period)",
+                ]
+            )
 
-            rest.append("Rest for " + str(i%10) + " minutes")
+            restC.append("Rest for " + str(i % 20) + " minutes")
             # "Hold at 1 V for 20 seconds",
             # "Hold at 4.1 V until 50 mA",
             # "Hold at 3V until C/50",
-    
-    print(len(charge))
 
-    random.shuffle(discharge)
-    random.shuffle(rest)
-    random.shuffle(charge)
+    print(len(chargeC))
 
-    cycle = []
-    cycle.append(charge[random.randint(0, 49)])
-    cycle.append(rest[random.randint(0, 49)])
-    cycle.append(discharge[random.randint(0, 49)])
+    random.shuffle(dischargeC)
+    random.shuffle(restC)
+    random.shuffle(chargeC)
 
-    print(cycle)
+    # print(chargeC)
+    # print(dischargeC)
 
-    # cycle.append("Discharge at 1C for 0.5 hours")
-    # cycle.append("Discharge at C/20 for 0.5 hours")
-    # test = []
-    # test.append("Charge at 0.5 C for 45 minutes")
-    random.shuffle(cycle)
-    experiment = pybamm.Experiment(cycle * 3)
+    cycleC = []
+    cycleC.append(chargeC[random.randint(0, 90)][random.randint(0, 1)])
+    cycleC.append(restC[random.randint(0, 90)])
+    cycleC.append(dischargeC[random.randint(0, 90)][random.randint(0, 1)])
 
-    # chemistry = pybamm.parameter_sets.Chen2020
-    # parameter_values = pybamm.ParameterValues(chemistry=chemistry)
+    print(cycleC)
+
+    random.shuffle(cycleC)
+    experiment = pybamm.Experiment(cycleC * 3)
+
+    chemistry = pybamm.parameter_sets.Chen2020
+    parameter_values = pybamm.ParameterValues(chemistry=chemistry)
 
     model = pybamm.lithium_ion.DFN()
 
