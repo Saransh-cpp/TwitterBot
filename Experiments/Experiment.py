@@ -6,40 +6,41 @@ import random
 
 def experiment_func():
 
+
     chargeC = []
     dischargeC = []
     restC = []
 
+    model = pybamm.lithium_ion.DFN()
+    parameter_values = model.default_parameter_values
+    output_variables = model.variable_names()
+    random.shuffle(output_variables)
+
     for i in range(1, 100):
 
-        if i % 20 != 0 and i%3 != 0:
+        if i % 10 != 0 and i%3 != 0:
             dischargeC.append(
                 [
-                    "Discharge at " + str(i%3) + " C for " + str(i % 20) + " minutes",
-                    "Discharge at " + str(i%3) + " A for " + str(i % 20) + " minutes",
+                    "Discharge at " + str(i%3) + " C for " + str(i % 10) + " minutes",
+                    "Discharge at " + str(i%3) + " A for " + str(i % 10) + " minutes",
                 ]
             )
 
             chargeC.append(
                 [
-                    "Charge at " + str(i%3) + " C for " + str(i % 20) + " minutes",
-                    "Charge at " + str(i%3) + " A for " + str(i % 20) + " minutes (1 minute period)",
+                    "Charge at " + str(i%3) + " C for " + str(i % 10) + " minutes",
+                    "Charge at " + str(i%3) + " A for " + str(i % 10) + " minutes (1 minute period)",
                 ]
             )
 
-            restC.append("Rest for " + str(i % 20) + " minutes")
+            restC.append("Rest for " + str(i % 10) + " minutes")
             # "Hold at 1 V for 20 seconds",
             # "Hold at 4.1 V until 50 mA",
             # "Hold at 3V until C/50",
 
-    print(len(chargeC))
-
     random.shuffle(dischargeC)
     random.shuffle(restC)
     random.shuffle(chargeC)
-
-    # print(chargeC)
-    # print(dischargeC)
 
     cycleC = []
     cycleC.append(chargeC[random.randint(0, 60)][random.randint(0, 1)])
@@ -47,7 +48,7 @@ def experiment_func():
     cycleC.append(dischargeC[random.randint(0, 60)][random.randint(0, 1)])
 
     print(cycleC)
-    return cycleC
+    return cycleC, model, parameter_values, output_variables
 
 def cccv_experiment():
 
@@ -63,11 +64,11 @@ def cccv_experiment():
             chargeC.append(
                 # [
                     # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
-                    "Charge at " + str(2) + " A until " + str(3.7) + " V",
+                    "Charge at " + str(1) + " A until " + str(voltage) + " V",
                 # ]
             )
 
-            Hold.append("Hold at " + str(3.7) + " V until 50 mA")
+            Hold.append("Hold at " + str(voltage) + " V until 50 mA")
             # "Hold at 1 V for 20 seconds",
             # "Hold at 4.1 V until 50 mA",
             # "Hold at 3V until C/50",

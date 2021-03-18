@@ -24,7 +24,7 @@ current_interpolant = pybamm.Interpolant(
 param["Current function [A]"] = current_interpolant
 
 sim_US06_1 = pybamm.Simulation(
-    model, parameter_values=param, solver=pybamm.CasadiSolver(mode="fast")
+    model, parameter_values=param, solver=pybamm.CasadiSolver(mode="fast with events")
 )
 sol_US06_1 = sim_US06_1.solve()
 
@@ -34,7 +34,7 @@ cycle = cccv_experiment()
 experiment = pybamm.Experiment(
     cycle
 )
-sim_cccv = pybamm.Simulation(model, experiment=experiment)
+sim_cccv = pybamm.Simulation(model, experiment=experiment, solver=pybamm.CasadiSolver(mode="fast"))
 sol_cccv = sim_cccv.solve()
 print('yes')
 new_model = model.set_initial_conditions_from(sol_cccv, inplace=False)
@@ -43,10 +43,13 @@ new_model = model.set_initial_conditions_from(sol_cccv, inplace=False)
 # omega = 0.1
 # param["Current function [A]"] = my_fun(A,omega)
 
+print('Yes')
 sim_US06_2 = pybamm.Simulation(
     new_model, parameter_values=param, solver=pybamm.CasadiSolver(mode="fast")
 )
+
 sol_US06_2 = sim_US06_2.solve()
+print('Yes')
 
 pybamm.dynamic_plot(
     [sol_US06_1, sol_US06_2], labels=["Default initial conditions", "Fully charged"]
