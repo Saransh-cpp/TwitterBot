@@ -8,4 +8,4 @@ def information(parameter_number, cycle):
     elif parameter_number == 1:
         return "This is some basic information about Mohtat2020 parameters in a simple DFN model plotted using PyBaMM"
     elif parameter_number == 'experiment':
-        return "This is a random experiment generated plotted using PyBaMM. The experiment cycle - " + str(cycle)
+        return "This is a random experiment generated and plotted using PyBaMM. The experiment cycle - " + str(cycle)

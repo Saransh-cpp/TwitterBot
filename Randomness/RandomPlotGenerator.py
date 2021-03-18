@@ -66,7 +66,8 @@ def random_plot_generator():
                 return parameter_values, time, parameter_number, None
 
         elif choice == 1:
-            try:
+            repeat = True
+            while repeat:
                 (
                     cycle,
                     model,
@@ -77,19 +78,11 @@ def random_plot_generator():
                 sim = pybamm.Simulation(model, experiment=experiment)
                 sim.solve()
                 solution = sim.solution
-                t = solution["Time [s]"]
-            except:
-                (
-                    cycle,
-                    model,
-                    parameter_values,
-                    output_variables,
-                ) = foo2.experiment_func()
-                experiment = pybamm.Experiment(cycle)
-                sim = pybamm.Simulation(model, experiment=experiment)
-                sim.solve()
-                solution = sim.solution
-                t = solution["Time [s]"]
+                try:
+                    t = solution["Time [s]"]
+                    repeat = False
+                except:
+                    repeat = True
 
             time = foo1.plot_graph(solution, sim, output_variables)
 
