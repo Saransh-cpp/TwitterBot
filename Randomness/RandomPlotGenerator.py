@@ -24,7 +24,7 @@ def random_plot_generator():
 
     while True:
 
-        choice = random.randint(0,1)
+        choice = random.randint(0, 1)
 
         if choice == 0:
             parameter_number = random.randint(0, 1)
@@ -63,7 +63,7 @@ def random_plot_generator():
                 )
                 time = foo1.plot_graph(solution, sim, output_variables)
 
-                return parameter_values, time, parameter_number, None
+                return parameter_values, time, parameter_number, None, None
 
         elif choice == 1:
             repeat = True
@@ -75,7 +75,26 @@ def random_plot_generator():
                     output_variables,
                 ) = foo2.experiment_func()
                 experiment = pybamm.Experiment(cycle)
-                sim = pybamm.Simulation(model, experiment=experiment)
+                Solver = random.randint(0, 3)
+
+                if Solver == 0:
+                    sim = pybamm.Simulation(model, experiment=experiment)
+                elif Solver == 1:
+                    sim = pybamm.Simulation(
+                        model,
+                        experiment=experiment,
+                        solver=pybamm.CasadiSolver(mode="fast"),
+                    )
+                elif Solver == 2:
+                    sim = pybamm.Simulation(
+                        model, experiment=experiment, solver=pybamm.CasadiSolver()
+                    )
+                else:
+                    sim = pybamm.Simulation(
+                        model,
+                        experiment=experiment,
+                        solver=pybamm.CasadiSolver(mode="fast with events"),
+                    )
                 sim.solve()
                 solution = sim.solution
                 try:
@@ -86,4 +105,4 @@ def random_plot_generator():
 
             time = foo1.plot_graph(solution, sim, output_variables)
 
-            return parameter_values, time, "experiment", cycle
+            return parameter_values, time, "experiment", cycle, Solver

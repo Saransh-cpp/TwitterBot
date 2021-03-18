@@ -24,9 +24,9 @@ api = tweepy.API(auth)
 
 def tweet_graph():
 
-    parameter_values, time_of_png, parameter_number, cycle = foo1.random_plot_generator()
+    parameter_values, time_of_png, parameter_number, cycle, solver = foo1.random_plot_generator()
     print(time_of_png)
-    info_string = foo2.information(parameter_number, cycle) + ' at time = ' + str(time_of_png) 
+    info_string = foo2.information(parameter_number, cycle, solver) + ' at time = ' + str(time_of_png) 
     # + 'with parameter values: ' + str(parameter_values)
 
     # Uncomment to tweet
