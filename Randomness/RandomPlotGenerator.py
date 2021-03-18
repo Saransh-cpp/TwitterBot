@@ -24,7 +24,7 @@ def random_plot_generator():
 
     while True:
 
-        choice = random.randint(0, 1)
+        choice = random.randint(0,1)
 
         if choice == 0:
             parameter_number = random.randint(0, 1)

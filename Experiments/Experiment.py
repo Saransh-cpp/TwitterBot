@@ -43,9 +43,9 @@ def experiment_func():
     random.shuffle(chargeC)
 
     cycleC = []
-    cycleC.append(chargeC[random.randint(0, 60)][random.randint(0, 1)])
-    cycleC.append(restC[random.randint(0, 60)])
-    cycleC.append(dischargeC[random.randint(0, 60)][random.randint(0, 1)])
+    cycleC.append(chargeC[random.randint(0, 50)][random.randint(0, 1)])
+    cycleC.append(restC[random.randint(0, 50)])
+    cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
 
     print(cycleC)
     return cycleC, model, parameter_values, output_variables

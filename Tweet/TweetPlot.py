@@ -26,12 +26,12 @@ def tweet_graph():
 
     parameter_values, time_of_png, parameter_number, cycle, solver = foo1.random_plot_generator()
     print(time_of_png)
-    info_string = foo2.information(parameter_number, cycle, solver) + ' at time = ' + str(time_of_png) 
+    info_string = foo2.information(parameter_number, cycle, solver) + ', at time = ' + str(time_of_png) 
     # + 'with parameter values: ' + str(parameter_values)
 
     # Uncomment to tweet
     media = api.media_upload('fooimage.png')
-    test_string = 'Added experiments. Script source code - https://github.com/Saransh-cpp/TwitterBot ' + info_string 
+    test_string = 'https://github.com/Saransh-cpp/TwitterBot ' + info_string 
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
@@ -44,7 +44,7 @@ def tweet_graph():
 while True:
     print('Tweeting....')
     tweet_graph()
-    time.sleep(300)
+    time.sleep(15)
 
 # Uncomment to run the code only once
 # tweet_graph()

@@ -23,10 +23,10 @@ def information(parameter_number, cycle, solver):
         return "This is some basic information about Mohtat2020 parameters in a simple DFN model plotted using PyBaMM"
     elif parameter_number == "experiment":
         return (
-            "This is a random experiment generated and plotted using PyBaMM. The experiment cycle - "
+            "Random experiment generated and plotted using PyBaMM. The experiment cycle- "
             + str(cycle)
-            + "Solver: "
+            + ". Solver: "
             + solver_name
-            + " mode: "
+            + ", mode: "
             + mode
         )
