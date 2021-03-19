@@ -104,7 +104,6 @@ prompt-toolkit==3.0.14
 py==1.10.0
 pybamm==0.3.0b0
 pybtex==0.24.0
-pycairo @ file:///C:/Users/Saransh/Saransh_softwares/pycairo-1.20.0-cp39-cp39-win_amd64.whl
 pycparser==2.20
 pydub==0.24.1
 Pygments==2.7.2
