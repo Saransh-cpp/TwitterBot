@@ -75,7 +75,7 @@ def random_plot_generator():
                     parameter_values,
                     output_variables,
                 ) = foo2.experiment_func()
-                experiment = pybamm.Experiment(cycle)
+                experiment = pybamm.Experiment(cycle * number)
                 Solver = random.randint(0, 3)
 
                 if Solver == 0:
