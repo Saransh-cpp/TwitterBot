@@ -42,6 +42,7 @@ ipython-genutils==0.2.0
 ipywidgets==7.6.3
 isort==5.6.4
 jax
+jaxlib
 jedi==0.18.0
 Jinja2==2.11.2
 joblib==1.0.0
