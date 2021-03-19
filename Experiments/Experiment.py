@@ -47,8 +47,9 @@ def experiment_func():
     cycleC.append(restC[random.randint(0, 50)])
     cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
 
-    print(cycleC)
-    return cycleC, model, parameter_values, output_variables
+    number = random.randint(1, 3)
+    print(cycleC * number)
+    return cycleC * number, model, parameter_values, output_variables
 
 def cccv_experiment():
 
