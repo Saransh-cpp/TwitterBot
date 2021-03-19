@@ -101,7 +101,7 @@ progressbar==2.5
 prometheus-client==0.9.0
 prompt-toolkit==3.0.14
 py==1.10.0
-pybamm==0.3.0b0
+pybamm
 pybtex==0.24.0
 pycparser==2.20
 pydub==0.24.1
