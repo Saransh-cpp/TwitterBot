@@ -4,6 +4,7 @@ import time
 import matplotlib.pyplot as plt
 import importlib.util
 import os
+# from keys import Keys
 
 # spec = importlib.util.spec_from_file_location("Chen2020params.py", "keys.py")
 # foo = importlib.util.module_from_spec(spec)
@@ -26,31 +27,34 @@ print(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET)
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth)
+
+# auth = tweepy.OAuthHandler(Keys.CONSUMER_KEY, Keys.CONSUMER_SECRET)
+# auth.set_access_token(Keys.ACCESS_KEY, Keys.ACCESS_SECRET)
+# api = tweepy.API(auth)
 
 def tweet_graph():
 
-    parameter_values, time_of_png, parameter_number, cycle, solver = foo1.random_plot_generator()
+    parameter_values, time_of_png, parameter_number, cycle, solver, number = foo1.random_plot_generator()
     print(time_of_png)
-    info_string = foo2.information(parameter_number, cycle, solver) + ', at time = ' + str(time_of_png) 
+    info_string = foo2.information(parameter_number, str(cycle) + " * " + str(number), solver) + ', at time = ' + str(time_of_png) 
     # + 'with parameter values: ' + str(parameter_values)
 
     # Uncomment to tweet
-    media = api.media_upload('fooimage.png')
+    media = api.media_upload('foo.png')
     test_string = 'https://github.com/Saransh-cpp/TwitterBot ' + info_string 
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
 
-    os.remove('fooimage.png')
-    os.remove('foo.pdf')
+    os.remove('foo.png')
+    # os.remove('foo.pdf')
     plt.clf()
 
 # Simulate tweeting process
 while True:
     print('Tweeting....')
     tweet_graph()
-    time.sleep(300)
+    time.sleep(15)
 
 # Uncomment to run the code only once
 # tweet_graph()

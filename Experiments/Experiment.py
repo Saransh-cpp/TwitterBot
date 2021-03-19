@@ -49,7 +49,7 @@ def experiment_func():
 
     number = random.randint(1, 3)
     print(cycleC * number)
-    return cycleC * number, model, parameter_values, output_variables
+    return cycleC, number, model, parameter_values, output_variables
 
 def cccv_experiment():
 

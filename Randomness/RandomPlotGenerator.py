@@ -63,13 +63,14 @@ def random_plot_generator():
                 )
                 time = foo1.plot_graph(solution, sim, output_variables)
 
-                return parameter_values, time, parameter_number, None, None
+                return parameter_values, time, parameter_number, None, None, None
 
         elif choice == 1:
             repeat = True
             while repeat:
                 (
                     cycle,
+                    number,
                     model,
                     parameter_values,
                     output_variables,
@@ -105,4 +106,4 @@ def random_plot_generator():
 
             time = foo1.plot_graph(solution, sim, output_variables)
 
-            return parameter_values, time, "experiment", cycle, Solver
+            return parameter_values, time, "experiment", cycle, Solver, number

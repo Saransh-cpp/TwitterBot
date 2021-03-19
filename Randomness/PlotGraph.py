@@ -2,9 +2,9 @@ import random
 import pybamm
 import importlib
 
-spec1 = importlib.util.spec_from_file_location("PDFtoPNNG.py", "Utils/PDFtoPNG.py")
-foo1 = importlib.util.module_from_spec(spec1)
-spec1.loader.exec_module(foo1)
+# spec1 = importlib.util.spec_from_file_location("PDFtoPNNG.py", "Utils/PDFtoPNG.py")
+# foo1 = importlib.util.module_from_spec(spec1)
+# spec1.loader.exec_module(foo1)
 
 def plot_graph(solution, sim, output_variables):
 
@@ -16,8 +16,8 @@ def plot_graph(solution, sim, output_variables):
     if plot_type == 0:
         plot = pybamm.QuickPlot(sim, time_unit='seconds')
         plot.plot(time)
-        plot.fig.savefig("foo.pdf", dpi=300)
-        foo1.pdf_to_png('foo.pdf')
+        plot.fig.savefig("foo.png", dpi=300)
+        # foo1.pdf_to_png('foo.pdf')
     else:
         while True:
             lower_limit = random.randint(0, len(output_variables))
