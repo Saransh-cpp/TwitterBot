@@ -25,8 +25,8 @@ def plot_graph(solution, sim, output_variables):
             if upper_limit - lower_limit < 9 and upper_limit - lower_limit > 2:
                 plot = pybamm.QuickPlot(sim, output_variables=output_variables[lower_limit:upper_limit], time_unit='seconds')
                 plot.plot(time)
-                plot.fig.savefig("foo.pdf", dpi=300)
-                foo1.pdf_to_png('foo.pdf')
+                plot.fig.savefig("foo.png", dpi=300)
+                # foo1.pdf_to_png('foo.pdf')
                 break
     
     return time
