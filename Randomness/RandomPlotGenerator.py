@@ -76,7 +76,7 @@ def random_plot_generator():
                     output_variables,
                 ) = foo2.experiment_func()
                 experiment = pybamm.Experiment(cycle * number)
-                Solver = random.randint(0, 3)
+                Solver = random.randint(0, 2)
 
                 if Solver == 0:
                     sim = pybamm.Simulation(model, experiment=experiment)
@@ -90,15 +90,15 @@ def random_plot_generator():
                     sim = pybamm.Simulation(
                         model, experiment=experiment, solver=pybamm.CasadiSolver()
                     )
-                else:
-                    sim = pybamm.Simulation(
-                        model,
-                        experiment=experiment,
-                        solver=pybamm.CasadiSolver(mode="fast with events"),
-                    )
-                sim.solve()
-                solution = sim.solution
+                # else:
+                #     sim = pybamm.Simulation(
+                #         model,
+                #         experiment=experiment,
+                #         solver=pybamm.CasadiSolver(mode="fast with events"),
+                #     )
                 try:
+                    sim.solve()
+                    solution = sim.solution
                     t = solution["Time [s]"]
                     repeat = False
                 except:

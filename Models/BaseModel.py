@@ -33,8 +33,15 @@ def BaseModel(current_function, lower_voltage, upper_voltage,
     output_variables = model.variable_names()
     random.shuffle(output_variables)
 
-    sim = pybamm.Simulation(model, parameter_values=parameter_values)
-    sim.solve([0, 3600])
-    solution = sim.solution
+    solved = False;
+
+    while not solved:
+        try:
+            sim = pybamm.Simulation(model, parameter_values=parameter_values)
+            sim.solve([0, 3600])
+            solution = sim.solution
+            solved = True
+        except:
+            solved = False
 
     return parameter_values, sim, solution, output_variables, parameter_number
