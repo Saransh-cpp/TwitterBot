@@ -2,6 +2,7 @@ pybamm
 tweepy
 numpy
 pandas
+importlib.util
 importlib
 matplotlib
 time
