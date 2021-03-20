@@ -51,7 +51,7 @@ def tweet_graph():
         + ", at time = "
         + str(time_of_png)
     )
-    +"with parameter values: " + str(parameter_values)
+    # +"with parameter values: " + str(parameter_values)
 
     # Uncomment to tweet
     media = api.media_upload("foo.png")
