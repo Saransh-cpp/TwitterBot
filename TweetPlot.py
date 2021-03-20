@@ -4,26 +4,27 @@ import time
 import matplotlib.pyplot as plt
 import importlib.util
 import os
+
 # from keys import Keys
 
-# spec = importlib.util.spec_from_file_location("Chen2020params.py", "keys.py")
-# foo = importlib.util.module_from_spec(spec)
-# spec.loader.exec_module(foo)
-
-spec1 = importlib.util.spec_from_file_location("RandomPlotGenerator.py", "Randomness/RandomPlotGenerator.py")
+spec1 = importlib.util.spec_from_file_location(
+    "RandomPlotGenerator.py", "Randomness/RandomPlotGenerator.py"
+)
 foo1 = importlib.util.module_from_spec(spec1)
 spec1.loader.exec_module(foo1)
 
-spec2 = importlib.util.spec_from_file_location("Information.py", "Information/Information.py")
+spec2 = importlib.util.spec_from_file_location(
+    "Information.py", "Information/Information.py"
+)
 foo2 = importlib.util.module_from_spec(spec2)
 spec2.loader.exec_module(foo2)
 
-CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
-CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
-ACCESS_KEY = os.environ.get('ACCESS_KEY')
-ACCESS_SECRET = os.environ.get('ACCESS_SECRET')
+CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
+CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+ACCESS_KEY = os.environ.get("ACCESS_KEY")
+ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
 
-print(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET)
+# print(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET)
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
@@ -33,29 +34,42 @@ api = tweepy.API(auth)
 # auth.set_access_token(Keys.ACCESS_KEY, Keys.ACCESS_SECRET)
 # api = tweepy.API(auth)
 
+
 def tweet_graph():
 
-    parameter_values, time_of_png, parameter_number, cycle, solver, number = foo1.random_plot_generator()
+    (
+        parameter_values,
+        time_of_png,
+        parameter_number,
+        cycle,
+        solver,
+        number,
+    ) = foo1.random_plot_generator()
     print(time_of_png)
-    info_string = foo2.information(parameter_number, str(cycle) + " * " + str(number), solver) + ', at time = ' + str(time_of_png) 
-    # + 'with parameter values: ' + str(parameter_values)
+    info_string = (
+        foo2.information(parameter_number, str(cycle) + " * " + str(number), solver)
+        + ", at time = "
+        + str(time_of_png)
+    )
+    +"with parameter values: " + str(parameter_values)
 
     # Uncomment to tweet
-    media = api.media_upload('foo.png')
-    test_string = 'https://github.com/Saransh-cpp/TwitterBot ' + info_string 
+    media = api.media_upload("foo.png")
+    test_string = "https://github.com/Saransh-cpp/TwitterBot " + info_string
     tweet = test_string
 
     api.update_status(status=tweet, media_ids=[media.media_id])
 
-    os.remove('foo.png')
-    # os.remove('foo.pdf')
+    os.remove("foo.png")
+    os.remove("foo.pdf")
     plt.clf()
+
 
 # Simulate tweeting process
 while True:
-    print('Tweeting....')
+    print("Tweeting....")
     tweet_graph()
-    time.sleep(900)
+    time.sleep(1800)
 
 # Uncomment to run the code only once
 # tweet_graph()

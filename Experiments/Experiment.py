@@ -6,7 +6,6 @@ import random
 
 def experiment_func():
 
-
     chargeC = []
     dischargeC = []
     restC = []
@@ -18,18 +17,22 @@ def experiment_func():
 
     for i in range(1, 100):
 
-        if i % 10 != 0 and i%3 != 0:
+        if i % 10 != 0 and i % 3 != 0:
             dischargeC.append(
                 [
-                    "Discharge at " + str(i%3) + " C for " + str(i % 10) + " minutes",
-                    "Discharge at " + str(i%3) + " A for " + str(i % 10) + " minutes",
+                    "Discharge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
+                    "Discharge at " + str(i % 3) + " A for " + str(i % 10) + " minutes",
                 ]
             )
 
             chargeC.append(
                 [
-                    "Charge at " + str(i%3) + " C for " + str(i % 10) + " minutes",
-                    "Charge at " + str(i%3) + " A for " + str(i % 10) + " minutes (1 minute period)",
+                    "Charge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
+                    "Charge at "
+                    + str(i % 3)
+                    + " A for "
+                    + str(i % 10)
+                    + " minutes (1 minute period)",
                 ]
             )
 
@@ -51,53 +54,54 @@ def experiment_func():
     print(cycleC * number)
     return cycleC, number, model, parameter_values, output_variables
 
-def cccv_experiment():
 
-    chargeC = []
-    dischargeC = []
-    Hold = []
-    voltage = random.uniform(3.1, 4.1)
+# def cccv_experiment():
 
-    for i in range(1, 100):
+#     chargeC = []
+#     dischargeC = []
+#     Hold = []
+#     voltage = random.uniform(3.1, 4.1)
 
-        if i%4 != 0:
+#     for i in range(1, 100):
 
-            chargeC.append(
-                # [
-                    # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
-                    "Charge at " + str(1) + " A until " + str(voltage) + " V",
-                # ]
-            )
+#         if i%4 != 0:
 
-            Hold.append("Hold at " + str(voltage) + " V until 50 mA")
-            # "Hold at 1 V for 20 seconds",
-            # "Hold at 4.1 V until 50 mA",
-            # "Hold at 3V until C/50",
+#             chargeC.append(
+#                 # [
+#                     # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
+#                     "Charge at " + str(1) + " A until " + str(voltage) + " V",
+#                 # ]
+#             )
 
-    random.shuffle(dischargeC)
-    random.shuffle(Hold)
-    random.shuffle(chargeC)
+#             Hold.append("Hold at " + str(voltage) + " V until 50 mA")
+#             # "Hold at 1 V for 20 seconds",
+#             # "Hold at 4.1 V until 50 mA",
+#             # "Hold at 3V until C/50",
 
-    cycleC = []
-    cycleC.append(chargeC[random.randint(0, 60)])
-    cycleC.append(Hold[random.randint(0, 60)])
+#     random.shuffle(dischargeC)
+#     random.shuffle(Hold)
+#     random.shuffle(chargeC)
 
-    print(cycleC)
-    return cycleC
+#     cycleC = []
+#     cycleC.append(chargeC[random.randint(0, 60)])
+#     cycleC.append(Hold[random.randint(0, 60)])
+
+#     print(cycleC)
+#     return cycleC
 
 
-    # random.shuffle(cycleC)
-    # experiment = pybamm.Experiment(cycleC * 3)
+# random.shuffle(cycleC)
+# experiment = pybamm.Experiment(cycleC * 3)
 
-    # # chemistry = pybamm.parameter_sets.Chen2020
-    # # parameter_values = pybamm.ParameterValues(chemistry=chemistry)
+# # chemistry = pybamm.parameter_sets.Chen2020
+# # parameter_values = pybamm.ParameterValues(chemistry=chemistry)
 
-    # model = pybamm.lithium_ion.DFN()
+# model = pybamm.lithium_ion.DFN()
 
-    # sim = pybamm.Simulation(model, experiment=experiment)
+# sim = pybamm.Simulation(model, experiment=experiment)
 
-    # sim.solve()
-    # sim.plot()
+# sim.solve()
+# sim.plot()
 
 
 # while True:

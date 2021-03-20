@@ -4,20 +4,24 @@ import matplotlib.pyplot as plt
 import random
 
 
-def BaseModel(current_function, lower_voltage, upper_voltage,
-                        ambient_temp, initial_temp, reference_temp,
-                        parameter_number):
-    
-    
+def BaseModel(
+    current_function,
+    lower_voltage,
+    upper_voltage,
+    ambient_temp,
+    initial_temp,
+    reference_temp,
+    parameter_number,
+):
 
     if parameter_number == 0:
         chemistry = pybamm.parameter_sets.Chen2020
     elif parameter_number == 1:
         chemistry = pybamm.parameter_sets.Marquis2019
-    elif parameter_number == 2:
-        chemistry = pybamm.parameter_sets.Ecker2015
-    elif parameter_number == 3:
-        chemistry = pybamm.parameter_sets.Mohtat2020
+    # elif parameter_number == 2:
+    #     chemistry = pybamm.parameter_sets.Ecker2015
+    # elif parameter_number == 3:
+    #     chemistry = pybamm.parameter_sets.Mohtat2020
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = pybamm.ParameterValues(chemistry=chemistry)
@@ -29,11 +33,10 @@ def BaseModel(current_function, lower_voltage, upper_voltage,
     parameter_values["Initial temperature [K]"] = initial_temp
     parameter_values["Reference temperature [K]"] = reference_temp
 
-
     output_variables = model.variable_names()
     random.shuffle(output_variables)
 
-    solved = False;
+    solved = False
 
     while not solved:
         try:
