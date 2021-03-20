@@ -61,7 +61,6 @@ def tweet_graph():
     api.update_status(status=tweet, media_ids=[media.media_id])
 
     os.remove("foo.png")
-    os.remove("foo.pdf")
     plt.clf()
 
 
