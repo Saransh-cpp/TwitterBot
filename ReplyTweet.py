@@ -125,4 +125,4 @@ def reply_to_tweet():
 
 while True:
     reply_to_tweet()
-    time.sleep(15)
+    time.sleep(60)
