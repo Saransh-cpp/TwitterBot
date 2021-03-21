@@ -9,9 +9,9 @@ def information(parameter_number, cycle, solver):
     elif solver == 2:
         solver_name = " Casadi"
         mode = " safe"
-    # elif solver == 3:
-    #     solver_name = " Casadi"
-    #     mode = " fast with events"
+    elif solver == 3:
+        solver_name = " Casadi"
+        mode = " fast with events"
 
     if parameter_number == 0:
         return "This is some basic information about Chen2020 parameters in a simple DFN model plotted using PyBaMM"
