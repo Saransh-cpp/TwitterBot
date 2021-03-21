@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 import importlib.util
 import os
 
-# from keys import Keys
-
 spec1 = importlib.util.spec_from_file_location(
     "RandomPlotGenerator.py", "Randomness/RandomPlotGenerator.py"
 )
@@ -24,16 +22,9 @@ CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
 
-# print(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET)
-
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
-
-# auth = tweepy.OAuthHandler(Keys.CONSUMER_KEY, Keys.CONSUMER_SECRET)
-# auth.set_access_token(Keys.ACCESS_KEY, Keys.ACCESS_SECRET)
-# api = tweepy.API(auth)
-
 
 def tweet_graph():
 
@@ -54,13 +45,13 @@ def tweet_graph():
     # +"with parameter values: " + str(parameter_values)
 
     # Uncomment to tweet
-    # media = api.media_upload("foo.png")
-    # test_string = "https://github.com/Saransh-cpp/TwitterBot " + info_string
-    # tweet = test_string
+    media = api.media_upload("foo.png")
+    test_string = "https://github.com/Saransh-cpp/TwitterBot " + info_string
+    tweet = test_string
 
-    # api.update_status(status=tweet, media_ids=[media.media_id])
+    api.update_status(status=tweet, media_ids=[media.media_id])
 
-    # os.remove("foo.png")
+    os.remove("foo.png")
     plt.clf()
 
 
@@ -68,7 +59,7 @@ def tweet_graph():
 while True:
     print("Tweeting....")
     tweet_graph()
-    time.sleep(10)
+    time.sleep(3600)
 
 # Uncomment to run the code only once
 # tweet_graph()

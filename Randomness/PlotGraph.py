@@ -14,7 +14,10 @@ def plot_graph(solution, sim, output_variables, t=None, reply=False):
     if plot_type == 0:
         plot = pybamm.QuickPlot(sim, time_unit="seconds")
         plot.plot(time)
-        plot.fig.savefig("foo.png", dpi=300)
+        if not reply:
+            plot.fig.savefig("foo.png", dpi=300)
+        elif reply:
+            plot.fig.savefig("replyFoo.png", dpi=300)
         # foo1.pdf_to_png('foo.pdf')
     else:
         while True:

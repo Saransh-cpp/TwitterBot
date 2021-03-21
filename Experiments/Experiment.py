@@ -4,7 +4,7 @@ import os
 import random
 
 
-def experiment_func():
+def experiment_func(cycle=None):
 
     chargeC = []
     dischargeC = []
@@ -17,7 +17,6 @@ def experiment_func():
     random.shuffle(output_variables)
 
     for i in range(1, 100):
-
         if i % 10 != 0 and i % 3 != 0:
             dischargeC.append(
                 [
@@ -65,8 +64,10 @@ def experiment_func():
 
     number = random.randint(1, 3)
     print(cycleC * number)
-    return cycleC, number, model, parameter_values, output_variables
-
+    if cycle == None:
+        return cycleC, number, model, parameter_values, output_variables
+    else:
+        return cycle, model, parameter_values, output_variables
 
 # def cccv_experiment():
 

@@ -77,6 +77,24 @@ def reply_to_tweet():
                         parameter_values, time = foo.random_plot_generator(0, 0)
                     elif "marquis2019" in singleMention.full_text.lower():
                         parameter_values, time = foo.random_plot_generator(0, 1)
+                    if "experiment" in singleMention.full_text.lower():
+                        experiment = singleMention.full_text.split("[")
+                        print(type(experiment), "\n", experiment)
+                        experiment = experiment[1].split("]")
+                        print(type(experiment), "\n", experiment)
+                        experiment = experiment[0]
+                        print(type(experiment), "\n", experiment)
+                        experiment = experiment.split(",")
+                        print(type(experiment), "\n", experiment)
+                        # experiment = [
+                        #     "Discharge at C/10 for 10 hours or until 3.3 V",
+                        #     "Rest for 1 hour",
+                        #     "Charge at 1 A until 4.1 V",
+                        #     "Hold at 4.1 V until 50 mA",
+                        #     "Rest for 1 hour",
+                        # ]
+                        # print(experiment)
+                        time = foo.random_plot_generator(choice=1, cycle=experiment)
 
             media = api.media_upload("replyFoo.png")
             test_string = (
@@ -96,6 +114,13 @@ def reply_to_tweet():
 
             os.remove("replyFoo.png")
             plt.clf()
+        else:
+            api.update_status(
+                "@"
+                + singleMention.user.screen_name
+                + " I'm sorry, could you be a bit more specific (remember this is only the testing phase)",
+                singleMention.id,
+            )
 
 
 while True:

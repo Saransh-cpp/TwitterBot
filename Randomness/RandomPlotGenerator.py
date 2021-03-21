@@ -21,7 +21,11 @@ spec2.loader.exec_module(foo2)
 
 
 def random_plot_generator(
-    choice=None, parameter_number=None, output_variables=None, time=None
+    choice=None,
+    parameter_number=None,
+    output_variables=None,
+    time=None,
+    cycle=None,
 ):
     reply = True
 
@@ -30,7 +34,6 @@ def random_plot_generator(
         if choice == None:
             choice = random.randint(0, 1)
             reply = False
-
 
         if choice == 0:
             if parameter_number == None:
@@ -69,7 +72,7 @@ def random_plot_generator(
                     parameter_number=parameter_number,
                 )
                 time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
-                
+
                 if not reply:
                     return parameter_values, time, parameter_number, None, None, None
                 elif reply:
@@ -77,15 +80,27 @@ def random_plot_generator(
 
         elif choice == 1:
             repeat = True
+            reply = True
             while repeat:
-                (
-                    cycle,
-                    number,
-                    model,
-                    parameter_values,
-                    output_variables,
-                ) = foo2.experiment_func()
-                experiment = pybamm.Experiment(cycle * number)
+                if cycle == None:
+                    reply = False
+                    (
+                        cycle,
+                        number,
+                        model,
+                        parameter_values,
+                        output_variables,
+                    ) = foo2.experiment_func()
+                    experiment = pybamm.Experiment(cycle * number)
+                else:
+                    (
+                        cycle,
+                        model,
+                        parameter_values,
+                        output_variables,
+                    ) = foo2.experiment_func(cycle)
+                    experiment = pybamm.Experiment(cycle)
+
                 Solver = random.randint(0, 2)
 
                 if Solver == 0:
@@ -114,6 +129,9 @@ def random_plot_generator(
                 except:
                     repeat = True
 
-            time = foo1.plot_graph(solution, sim, output_variables)
+            time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
 
-            return parameter_values, time, "experiment", cycle, Solver, number
+            if not reply:
+                return parameter_values, time, "experiment", cycle, Solver, number
+            elif reply:
+                return time
