@@ -3,9 +3,10 @@ import pybamm
 import importlib
 
 
-def plot_graph(solution, sim, output_variables):
+def plot_graph(solution, sim, output_variables, t=None, reply=False):
 
-    t = solution["Time [s]"]
+    if t == None:
+        t = solution["Time [s]"]
     final_time = int(t.entries[len(t.entries) - 1])
     plot_type = random.randint(0, 1)
     time = random.randint(0, final_time)
@@ -26,7 +27,10 @@ def plot_graph(solution, sim, output_variables):
                     time_unit="seconds",
                 )
                 plot.plot(time)
-                plot.fig.savefig("foo.png", dpi=300)
+                if not reply:
+                    plot.fig.savefig("foo.png", dpi=300)
+                elif reply:
+                    plot.fig.savefig("replyFoo.png", dpi=300)
                 # foo1.pdf_to_png('foo.pdf')
                 break
 

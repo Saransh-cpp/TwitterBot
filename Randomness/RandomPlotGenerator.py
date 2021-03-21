@@ -20,14 +20,21 @@ foo2 = importlib.util.module_from_spec(spec2)
 spec2.loader.exec_module(foo2)
 
 
-def random_plot_generator():
+def random_plot_generator(
+    choice=None, parameter_number=None, output_variables=None, time=None
+):
+    reply = True
 
     while True:
 
-        choice = random.randint(0, 1)
+        if choice == None:
+            choice = random.randint(0, 1)
+            reply = False
+
 
         if choice == 0:
-            parameter_number = random.randint(0, 1)
+            if parameter_number == None:
+                parameter_number = random.randint(0, 1)
 
             if parameter_number == 0:
                 current_function = random.uniform(0, 10)
@@ -61,9 +68,12 @@ def random_plot_generator():
                     reference_temp=reference_temp,
                     parameter_number=parameter_number,
                 )
-                time = foo1.plot_graph(solution, sim, output_variables)
-
-                return parameter_values, time, parameter_number, None, None, None
+                time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
+                
+                if not reply:
+                    return parameter_values, time, parameter_number, None, None, None
+                elif reply:
+                    return parameter_values, time
 
         elif choice == 1:
             repeat = True
