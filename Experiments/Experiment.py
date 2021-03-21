@@ -9,6 +9,7 @@ def experiment_func():
     chargeC = []
     dischargeC = []
     restC = []
+    # voltage = random.uniform(3.1, 4.2)
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = model.default_parameter_values
@@ -28,6 +29,8 @@ def experiment_func():
             chargeC.append(
                 [
                     "Charge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
+                    # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
+
                     "Charge at "
                     + str(i % 3)
                     + " A for "
@@ -36,7 +39,12 @@ def experiment_func():
                 ]
             )
 
-            restC.append("Rest for " + str(i % 10) + " minutes")
+            restC.append(
+                [
+                    "Rest for " + str(i % 10) + " minutes",
+                    # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
+                ]
+            )
             # "Hold at 1 V for 20 seconds",
             # "Hold at 4.1 V until 50 mA",
             # "Hold at 3V until C/50",
@@ -46,8 +54,13 @@ def experiment_func():
     random.shuffle(chargeC)
 
     cycleC = []
-    cycleC.append(chargeC[random.randint(0, 50)][random.randint(0, 1)])
-    cycleC.append(restC[random.randint(0, 50)])
+    # num = random.randint(0, 2)
+    # restnum = random.randint(0, 1)
+    # if restnum == 1:
+    #     num = 1
+
+    cycleC.append(chargeC[random.randint(0, 50)][random.randint(0,1)])
+    cycleC.append(restC[random.randint(0, 50)][0])
     cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
 
     number = random.randint(1, 3)

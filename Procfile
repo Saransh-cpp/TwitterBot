@@ -1,1 +1,1 @@
-start: python TweetPlot.py
+start: pip install git+https://github.com/pybamm-team/PyBaMM@develop; python TweetPlot.py

@@ -68,7 +68,7 @@ def tweet_graph():
 while True:
     print("Tweeting....")
     tweet_graph()
-    time.sleep(1800)
+    time.sleep(3600)
 
 # Uncomment to run the code only once
 # tweet_graph()
