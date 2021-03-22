@@ -63,7 +63,6 @@ latexcodec==2.0.1
 lazy-object-proxy==1.4.3
 livereload==2.6.3
 lunr==0.5.8
-manimlib==0.1.11
 Markdown==3.3.3
 MarkupSafe==1.1.1
 matplotlib==3.3.3
