@@ -11,12 +11,6 @@ spec = importlib.util.spec_from_file_location(
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
 
-# spec1 = importlib.util.spec_from_file_location(
-#     "PlotGraph.py", "Randomness/PlotGraph.py"
-# )
-# foo1 = importlib.util.module_from_spec(spec1)
-# spec1.loader.exec_module(foo1)
-
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
@@ -26,9 +20,7 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-
 FILE_NAME = "lastSeenId.txt"
-
 
 def retrieve_last_seen_id(file_name):
     f_read = open(file_name, "r")
@@ -79,21 +71,9 @@ def reply_to_tweet():
                         parameter_values, time = foo.random_plot_generator(0, 1)
                     if "experiment" in singleMention.full_text.lower():
                         experiment = singleMention.full_text.split("[")
-                        print(type(experiment), "\n", experiment)
                         experiment = experiment[1].split("]")
-                        print(type(experiment), "\n", experiment)
                         experiment = experiment[0]
-                        print(type(experiment), "\n", experiment)
                         experiment = experiment.split(",")
-                        print(type(experiment), "\n", experiment)
-                        # experiment = [
-                        #     "Discharge at C/10 for 10 hours or until 3.3 V",
-                        #     "Rest for 1 hour",
-                        #     "Charge at 1 A until 4.1 V",
-                        #     "Hold at 4.1 V until 50 mA",
-                        #     "Rest for 1 hour",
-                        # ]
-                        # print(experiment)
                         time = foo.random_plot_generator(choice=1, cycle=experiment)
 
             media = api.media_upload("replyFoo.png")
