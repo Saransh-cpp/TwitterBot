@@ -121,17 +121,26 @@ def random_plot_generator(
                 #         experiment=experiment,
                 #         solver=pybamm.CasadiSolver(mode="fast with events"),
                 #     )
-                try:
-                    sim.solve()
-                    solution = sim.solution
-                    t = solution["Time [s]"]
-                    repeat = False
-                except:
-                    repeat = True
+                feasible = True
+                if not reply:
+                    try:
+                        sim.solve()
+                        solution = sim.solution
+                        t = solution["Time [s]"]
+                        repeat = False
+                    except:
+                        repeat = True
+                elif reply:
+                    try:
+                        sim.solve()
+                        solution = sim.solution
+                        t = solution["Time [s]"]
+                    except:
+                        feasible = False
 
             time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
 
             if not reply:
                 return parameter_values, time, "experiment", cycle, Solver, number
             elif reply:
-                return time
+                return time, feasible

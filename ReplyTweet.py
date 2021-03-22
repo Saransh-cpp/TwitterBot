@@ -22,6 +22,7 @@ api = tweepy.API(auth)
 
 FILE_NAME = "lastSeenId.txt"
 
+
 def retrieve_last_seen_id(file_name):
     f_read = open(file_name, "r")
     last_seen_id = int(f_read.read().strip())
@@ -38,6 +39,7 @@ def store_last_seen_id(last_seen_id, file_name):
 
 def reply_to_tweet():
     print("replying...")
+    feasible = True
     last_seen_id = retrieve_last_seen_id(FILE_NAME)
 
     mention = api.mentions_timeline(last_seen_id, tweet_mode="extended")
@@ -74,23 +76,34 @@ def reply_to_tweet():
                         experiment = experiment[1].split("]")
                         experiment = experiment[0]
                         experiment = experiment.split(",")
-                        time = foo.random_plot_generator(choice=1, cycle=experiment)
+                        time, feasible = foo.random_plot_generator(
+                            choice=1, cycle=experiment
+                        )
 
-            media = api.media_upload("replyFoo.png")
-            test_string = (
-                "@"
-                + singleMention.user.screen_name
-                + " Here is your plot at time = "
-                + str(time)
-                + " seconds"
-            )
-            tweet = test_string
-
-            api.update_status(
-                status=tweet,
-                media_ids=[media.media_id],
-                in_reply_to_status_id=singleMention.id,
-            )
+            if feasible:
+                media = api.media_upload("replyFoo.png")
+                test_string = (
+                    "@"
+                    + singleMention.user.screen_name
+                    + " Here is your plot at time = "
+                    + str(time)
+                    + " seconds"
+                )
+                api.update_status(
+                    status=test_string,
+                    media_ids=[media.media_id],
+                    in_reply_to_status_id=singleMention.id,
+                )
+            elif not feasible:
+                test_string = (
+                    "@"
+                    + singleMention.user.screen_name
+                    + " The experiment was not feasible"
+                )
+                api.update_status(
+                    status=test_string,
+                    in_reply_to_status_id=singleMention.id,
+                )
 
             os.remove("replyFoo.png")
             plt.clf()
