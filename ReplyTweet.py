@@ -117,6 +117,18 @@ def reply_to_tweet():
                 singleMention.id,
             )
 
+# def sync_last_seen_id():
+#     last_seen_id = retrieve_last_seen_id(FILE_NAME)
+#     mention = api.mentions_timeline(last_seen_id, tweet_mode="extended")
+
+#     for singleMention in reversed(mention):
+#         print(
+#             str(singleMention.id) + " - " + singleMention.full_text
+#         )  # printing all my tweets
+#         last_seen_id = singleMention.id
+#         store_last_seen_id(last_seen_id, FILE_NAME)
+
+# sync_last_seen_id()
 
 while True:
     reply_to_tweet()
