@@ -135,8 +135,10 @@ def random_plot_generator(
                         sim.solve()
                         solution = sim.solution
                         t = solution["Time [s]"]
+                        repeat = False
                     except:
-                        feasible = False
+                        # feasible = False
+                        repeat = True
 
             time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
 

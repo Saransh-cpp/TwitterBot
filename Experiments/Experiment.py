@@ -16,57 +16,59 @@ def experiment_func(cycle=None):
     output_variables = model.variable_names()
     random.shuffle(output_variables)
 
-    for i in range(1, 100):
-        if i % 10 != 0 and i % 3 != 0:
-            dischargeC.append(
-                [
-                    "Discharge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
-                    "Discharge at " + str(i % 3) + " A for " + str(i % 10) + " minutes",
-                ]
-            )
-
-            chargeC.append(
-                [
-                    "Charge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
-                    # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
-
-                    "Charge at "
-                    + str(i % 3)
-                    + " A for "
-                    + str(i % 10)
-                    + " minutes (1 minute period)",
-                ]
-            )
-
-            restC.append(
-                [
-                    "Rest for " + str(i % 10) + " minutes",
-                    # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
-                ]
-            )
-            # "Hold at 1 V for 20 seconds",
-            # "Hold at 4.1 V until 50 mA",
-            # "Hold at 3V until C/50",
-
-    random.shuffle(dischargeC)
-    random.shuffle(restC)
-    random.shuffle(chargeC)
-
-    cycleC = []
-    # num = random.randint(0, 2)
-    # restnum = random.randint(0, 1)
-    # if restnum == 1:
-    #     num = 1
-
-    cycleC.append(chargeC[random.randint(0, 50)][random.randint(0,1)])
-    cycleC.append(restC[random.randint(0, 50)][0])
-    cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
-
-    number = random.randint(1, 3)
     if cycle == None:
+        for i in range(1, 100):
+            if i % 10 != 0 and i % 3 != 0:
+                dischargeC.append(
+                    [
+                        "Discharge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
+                        "Discharge at " + str(i % 3) + " A for " + str(i % 10) + " minutes",
+                    ]
+                )
+
+                chargeC.append(
+                    [
+                        "Charge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
+                        # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
+
+                        "Charge at "
+                        + str(i % 3)
+                        + " A for "
+                        + str(i % 10)
+                        + " minutes (1 minute period)",
+                    ]
+                )
+
+                restC.append(
+                    [
+                        "Rest for " + str(i % 10) + " minutes",
+                        # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
+                    ]
+                )
+                # "Hold at 1 V for 20 seconds",
+                # "Hold at 4.1 V until 50 mA",
+                # "Hold at 3V until C/50",
+
+        random.shuffle(dischargeC)
+        random.shuffle(restC)
+        random.shuffle(chargeC)
+
+        cycleC = []
+        # num = random.randint(0, 2)
+        # restnum = random.randint(0, 1)
+        # if restnum == 1:
+        #     num = 1
+
+        cycleC.append(chargeC[random.randint(0, 50)][random.randint(0,1)])
+        cycleC.append(restC[random.randint(0, 50)][0])
+        cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
+
+        number = random.randint(1, 3)
         print(cycleC * number)
         return cycleC, number, model, parameter_values, output_variables
+
     else:
+        print("yes")
         return cycle, model, parameter_values, output_variables
 
 # def cccv_experiment():

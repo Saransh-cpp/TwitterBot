@@ -80,6 +80,7 @@ def reply_to_tweet():
                         time, feasible = foo.random_plot_generator(
                             choice=1, cycle=experiment
                         )
+                        print("yes")
 
             if feasible:
                 media = api.media_upload("replyFoo.png")
