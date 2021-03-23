@@ -63,8 +63,8 @@ def experiment_func(cycle=None):
     cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
 
     number = random.randint(1, 3)
-    print(cycleC * number)
     if cycle == None:
+        print(cycleC * number)
         return cycleC, number, model, parameter_values, output_variables
     else:
         return cycle, model, parameter_values, output_variables

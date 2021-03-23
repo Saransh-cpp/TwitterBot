@@ -76,6 +76,7 @@ def reply_to_tweet():
                         experiment = experiment[1].split("]")
                         experiment = experiment[0]
                         experiment = experiment.split(",")
+                        print(experiment)
                         time, feasible = foo.random_plot_generator(
                             choice=1, cycle=experiment
                         )
