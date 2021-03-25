@@ -112,6 +112,7 @@ def random_plot_generator(
                     sim = pybamm.Simulation(
                         model, experiment=experiment, solver=pybamm.CasadiSolver()
                     )
+                print("Simulated")
                 # else:
                 #     sim = pybamm.Simulation(
                 #         model,
@@ -126,7 +127,7 @@ def random_plot_generator(
                         t = solution["Time [s]"]
                         repeat = False
                     except:
-                        repeat = True
+                        pass
                 elif reply:
                     try:
                         sim.solve()

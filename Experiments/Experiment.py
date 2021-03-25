@@ -57,10 +57,6 @@ def experiment_func(cycle=None):
             random.shuffle(charge)
 
             cycleC = []
-            # num = random.randint(0, 2)
-            # restnum = random.randint(0, 1)
-            # if restnum == 1:
-            #     num = 1
 
             cycleC.append(discharge[random.randint(0, 50)])
             cycleC.append(rest[random.randint(0, 50)])
@@ -70,9 +66,9 @@ def experiment_func(cycle=None):
             print(cycleC * number)
             return cycleC, number, model, parameter_values
 
-        elif cycle != None:
-            print("yes")
-            return cycle, model, parameter_values
+        # elif cycle != None:
+        #     print("Cycle != None", cycle)
+        #     return cycle, model, parameter_values
 
 
 # def cccv_experiment():
