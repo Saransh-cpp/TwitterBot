@@ -44,7 +44,7 @@ def tweet_graph():
     )
     # +"with parameter values: " + str(parameter_values)
 
-    Uncomment to tweet
+    # Uncomment to tweet
     media = api.media_upload("foo.png")
     test_string = "https://github.com/Saransh-cpp/TwitterBot " + info_string
     tweet = test_string
