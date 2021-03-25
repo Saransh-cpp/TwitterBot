@@ -30,15 +30,14 @@ def random_plot_generator(
     reply = True
 
     while True:
-        i = 1
 
         if choice == None:
-            choice = 0
+            choice = random.randint(0, 1)
             reply = False
 
         if choice == 0:
             if parameter_number == None:
-                parameter_number = 1
+                parameter_number = random.randint(0, 1)
 
             if parameter_number == 0:
                 current_function = random.uniform(0, 10)
