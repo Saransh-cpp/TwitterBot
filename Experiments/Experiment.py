@@ -56,19 +56,19 @@ def experiment_func(cycle=None):
             random.shuffle(rest)
             random.shuffle(charge)
 
-            cycle = []
+            cycleC = []
             # num = random.randint(0, 2)
             # restnum = random.randint(0, 1)
             # if restnum == 1:
             #     num = 1
 
-            cycle.append(discharge[random.randint(0, 50)][random.randint(0, 1)])
-            cycle.append(rest[random.randint(0, 50)][0])
-            cycle.append(charge[random.randint(0, 50)][random.randint(0, 1)])
+            cycleC.append(discharge[random.randint(0, 50)])
+            cycleC.append(rest[random.randint(0, 50)])
+            cycleC.append(charge[random.randint(0, 50)])
 
             number = random.randint(1, 3)
-            print(cycle * number)
-            return cycle, number, model, parameter_values
+            print(cycleC * number)
+            return cycleC, number, model, parameter_values
 
         elif cycle != None:
             print("yes")
@@ -102,16 +102,16 @@ def experiment_func(cycle=None):
 #     random.shuffle(Hold)
 #     random.shuffle(charge)
 
-#     cycle = []
-#     cycle.append(charge[random.randint(0, 60)])
-#     cycle.append(Hold[random.randint(0, 60)])
+#     cycleC = []
+#     cycleC.append(charge[random.randint(0, 60)])
+#     cycleC.append(Hold[random.randint(0, 60)])
 
-#     print(cycle)
-#     return cycle
+#     print(cycleC)
+#     return cycleC
 
 
-# random.shuffle(cycle)
-# experiment = pybamm.Experiment(cycle * 3)
+# random.shuffle(cycleC)
+# experiment = pybamm.Experiment(cycleC * 3)
 
 # # chemistry = pybamm.parameter_sets.Chen2020
 # # parameter_values = pybamm.ParameterValues(chemistry=chemistry)

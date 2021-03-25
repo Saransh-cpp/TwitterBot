@@ -32,7 +32,7 @@ def random_plot_generator(
     while True:
 
         if choice == None:
-            choice = random.randint(0, 1)
+            choice = 1
             reply = False
 
         if choice == 0:

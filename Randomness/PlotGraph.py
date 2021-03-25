@@ -11,8 +11,18 @@ def plot_graph(solution, sim, output_variables, t=None, reply=False):
     # plot_type = random.randint(0, 1)
     time = random.randint(0, final_time)
     print(time)
+    output_variables = [
+        "Negative particle surface concentration [mol.m-3]",
+        "Electrolytic concentration [mol.m-3]",
+        "Positive partile surface concentration [mol.m-3]",
+        "Current [A]",
+        "Negative electrode potential [V]",
+        "Electrolyte potential [V]",
+        "Positive electrode potential [V]",
+        "Terminal voltage [V]",
+    ]
     # if plot_type == 0:
-    plot = pybamm.QuickPlot(sim, time_unit="seconds")
+    plot = pybamm.QuickPlot(sim, output_variables=output_variables, time_unit="seconds")
     plot.plot(time)
     if not reply:
         plot.fig.savefig("foo.png", dpi=300)
