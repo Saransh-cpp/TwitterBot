@@ -6,9 +6,9 @@ import random
 
 def experiment_func(cycle=None):
 
-    chargeC = []
-    dischargeC = []
-    restC = []
+    charge = []
+    discharge = []
+    rest = []
     # voltage = random.uniform(3.1, 4.2)
 
     model = pybamm.lithium_ion.DFN()
@@ -19,14 +19,14 @@ def experiment_func(cycle=None):
     if cycle == None:
         for i in range(1, 100):
             if i % 10 != 0 and i % 3 != 0:
-                dischargeC.append(
+                discharge.append(
                     [
                         "Discharge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
                         "Discharge at " + str(i % 3) + " A for " + str(i % 10) + " minutes",
                     ]
                 )
 
-                chargeC.append(
+                charge.append(
                     [
                         "Charge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
                         # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
@@ -39,19 +39,19 @@ def experiment_func(cycle=None):
                     ]
                 )
 
-                restC.append(
+                rest.append(
                     [
                         "Rest for " + str(i % 10) + " minutes",
-                        # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
                     ]
                 )
+                # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
                 # "Hold at 1 V for 20 seconds",
                 # "Hold at 4.1 V until 50 mA",
                 # "Hold at 3V until C/50",
 
-        random.shuffle(dischargeC)
-        random.shuffle(restC)
-        random.shuffle(chargeC)
+        random.shuffle(discharge)
+        random.shuffle(rest)
+        random.shuffle(charge)
 
         cycleC = []
         # num = random.randint(0, 2)
@@ -59,9 +59,9 @@ def experiment_func(cycle=None):
         # if restnum == 1:
         #     num = 1
 
-        cycleC.append(chargeC[random.randint(0, 50)][random.randint(0,1)])
-        cycleC.append(restC[random.randint(0, 50)][0])
-        cycleC.append(dischargeC[random.randint(0, 50)][random.randint(0, 1)])
+        cycleC.append(discharge[random.randint(0, 50)][random.randint(0, 1)])
+        cycleC.append(rest[random.randint(0, 50)][0])
+        cycleC.append(charge[random.randint(0, 50)][random.randint(0,1)])
 
         number = random.randint(1, 3)
         print(cycleC * number)
@@ -73,8 +73,8 @@ def experiment_func(cycle=None):
 
 # def cccv_experiment():
 
-#     chargeC = []
-#     dischargeC = []
+#     charge = []
+#     discharge = []
 #     Hold = []
 #     voltage = random.uniform(3.1, 4.1)
 
@@ -82,7 +82,7 @@ def experiment_func(cycle=None):
 
 #         if i%4 != 0:
 
-#             chargeC.append(
+#             charge.append(
 #                 # [
 #                     # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
 #                     "Charge at " + str(1) + " A until " + str(voltage) + " V",
@@ -94,12 +94,12 @@ def experiment_func(cycle=None):
 #             # "Hold at 4.1 V until 50 mA",
 #             # "Hold at 3V until C/50",
 
-#     random.shuffle(dischargeC)
+#     random.shuffle(discharge)
 #     random.shuffle(Hold)
-#     random.shuffle(chargeC)
+#     random.shuffle(charge)
 
 #     cycleC = []
-#     cycleC.append(chargeC[random.randint(0, 60)])
+#     cycleC.append(charge[random.randint(0, 60)])
 #     cycleC.append(Hold[random.randint(0, 60)])
 
 #     print(cycleC)
