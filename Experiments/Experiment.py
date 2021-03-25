@@ -9,76 +9,70 @@ def experiment_func(cycle=None):
     charge = []
     discharge = []
     rest = []
-    voltage = random.uniform(3.1, 4.2)
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = model.default_parameter_values
 
-    if cycle == None:
-        for i in range(1, 100):
-            if i % 10 != 0 and i % 3 != 0:
-                discharge.append(
-                    [
-                        "Discharge at "
-                        + str(i % 3)
-                        + " C for "
-                        + str(i % 10)
-                        + " minutes",
-                        "Discharge at "
-                        + str(i % 3)
-                        + " A for "
-                        + str(i % 10)
-                        + " minutes",
-                    ]
-                )
+    while True:
+        vmin = random.uniform(3.1, 4.2)
+        vmax = random.uniform(3.1, 4.2)
+        if cycle == None and vmin < vmax:
+            for i in range(1, 100):
+                if i % 10 != 0 and i % 3 != 0:
+                    discharge.append(
+                        # [
+                        "Discharge at " + str(i % 3) + " C until " + str(vmin) + " V",
+                        # "Discharge at "
+                        # + str(i % 3)
+                        # + " A for "
+                        # + str(i % 10)
+                        # + " minutes",
+                        # ]
+                    )
 
-                charge.append(
-                    [
-                        "Charge at "
-                        + str(i % 3)
-                        + " C for "
-                        + str(i % 10)
-                        + " minutes",
+                    charge.append(
+                        # [
+                        "Charge at " + str(i % 3) + " C until " + str(vmax) + " V",
                         # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
-                        "Charge at "
-                        + str(i % 3)
-                        + " A for "
-                        + str(i % 10)
-                        + " minutes (1 minute period)",
-                    ]
-                )
+                        # "Charge at "
+                        # + str(i % 3)
+                        # + " A for "
+                        # + str(i % 10)
+                        # + " minutes (1 minute period)",
+                        # ]
+                    )
 
-                rest.append(
-                    [
+                    rest.append(
+                        # [
                         "Rest for " + str(i % 10) + " minutes",
-                    ]
-                )
-                # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
-                # "Hold at 1 V for 20 seconds",
-                # "Hold at 4.1 V until 50 mA",
-                # "Hold at 3V until C/50",
+                        # ]
+                    )
+                    # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
+                    # "Hold at 1 V for 20 seconds",
+                    # "Hold at 4.1 V until 50 mA",
+                    # "Hold at 3V until C/50",
 
-        random.shuffle(discharge)
-        random.shuffle(rest)
-        random.shuffle(charge)
+            random.shuffle(discharge)
+            random.shuffle(rest)
+            random.shuffle(charge)
 
-        cycleC = []
-        # num = random.randint(0, 2)
-        # restnum = random.randint(0, 1)
-        # if restnum == 1:
-        #     num = 1
+            cycle = []
+            # num = random.randint(0, 2)
+            # restnum = random.randint(0, 1)
+            # if restnum == 1:
+            #     num = 1
 
-        cycleC.append(discharge[random.randint(0, 50)][random.randint(0, 1)])
-        cycleC.append(rest[random.randint(0, 50)][0])
-        cycleC.append(charge[random.randint(0, 50)][random.randint(0, 1)])
+            cycle.append(discharge[random.randint(0, 50)][random.randint(0, 1)])
+            cycle.append(rest[random.randint(0, 50)][0])
+            cycle.append(charge[random.randint(0, 50)][random.randint(0, 1)])
 
-        number = random.randint(1, 3)
-        print(cycleC * number)
-        return cycleC, number, model, parameter_values
+            number = random.randint(1, 3)
+            print(cycle * number)
+            return cycle, number, model, parameter_values
 
-    else:
-        print("yes")
-        return cycle, model, parameter_values
+        elif cycle != None:
+            print("yes")
+            return cycle, model, parameter_values
 
 
 # def cccv_experiment():
@@ -108,16 +102,16 @@ def experiment_func(cycle=None):
 #     random.shuffle(Hold)
 #     random.shuffle(charge)
 
-#     cycleC = []
-#     cycleC.append(charge[random.randint(0, 60)])
-#     cycleC.append(Hold[random.randint(0, 60)])
+#     cycle = []
+#     cycle.append(charge[random.randint(0, 60)])
+#     cycle.append(Hold[random.randint(0, 60)])
 
-#     print(cycleC)
-#     return cycleC
+#     print(cycle)
+#     return cycle
 
 
-# random.shuffle(cycleC)
-# experiment = pybamm.Experiment(cycleC * 3)
+# random.shuffle(cycle)
+# experiment = pybamm.Experiment(cycle * 3)
 
 # # chemistry = pybamm.parameter_sets.Chen2020
 # # parameter_values = pybamm.ParameterValues(chemistry=chemistry)
