@@ -9,28 +9,37 @@ def experiment_func(cycle=None):
     charge = []
     discharge = []
     rest = []
-    # voltage = random.uniform(3.1, 4.2)
+    voltage = random.uniform(3.1, 4.2)
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = model.default_parameter_values
-    output_variables = model.variable_names()
-    random.shuffle(output_variables)
 
     if cycle == None:
         for i in range(1, 100):
             if i % 10 != 0 and i % 3 != 0:
                 discharge.append(
                     [
-                        "Discharge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
-                        "Discharge at " + str(i % 3) + " A for " + str(i % 10) + " minutes",
+                        "Discharge at "
+                        + str(i % 3)
+                        + " C for "
+                        + str(i % 10)
+                        + " minutes",
+                        "Discharge at "
+                        + str(i % 3)
+                        + " A for "
+                        + str(i % 10)
+                        + " minutes",
                     ]
                 )
 
                 charge.append(
                     [
-                        "Charge at " + str(i % 3) + " C for " + str(i % 10) + " minutes",
+                        "Charge at "
+                        + str(i % 3)
+                        + " C for "
+                        + str(i % 10)
+                        + " minutes",
                         # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
-
                         "Charge at "
                         + str(i % 3)
                         + " A for "
@@ -61,15 +70,16 @@ def experiment_func(cycle=None):
 
         cycleC.append(discharge[random.randint(0, 50)][random.randint(0, 1)])
         cycleC.append(rest[random.randint(0, 50)][0])
-        cycleC.append(charge[random.randint(0, 50)][random.randint(0,1)])
+        cycleC.append(charge[random.randint(0, 50)][random.randint(0, 1)])
 
         number = random.randint(1, 3)
         print(cycleC * number)
-        return cycleC, number, model, parameter_values, output_variables
+        return cycleC, number, model, parameter_values
 
     else:
         print("yes")
-        return cycle, model, parameter_values, output_variables
+        return cycle, model, parameter_values
+
 
 # def cccv_experiment():
 

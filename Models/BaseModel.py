@@ -33,9 +33,6 @@ def BaseModel(
     parameter_values["Initial temperature [K]"] = initial_temp
     parameter_values["Reference temperature [K]"] = reference_temp
 
-    output_variables = model.variable_names()
-    random.shuffle(output_variables)
-
     solved = False
 
     while not solved:
@@ -47,4 +44,4 @@ def BaseModel(
         except:
             solved = False
 
-    return parameter_values, sim, solution, output_variables, parameter_number
+    return parameter_values, sim, solution, parameter_number

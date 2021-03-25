@@ -18,7 +18,7 @@ def plot_graph(solution, sim, output_variables, t=None, reply=False):
         plot.fig.savefig("foo.png", dpi=300)
     elif reply:
         plot.fig.savefig("replyFoo.png", dpi=300)
-        # foo1.pdf_to_png('foo.pdf')
+    # Below was the code to plot random output variables (not needed right now)
     # else:
     #     while True:
     #         lower_limit = random.randint(0, len(output_variables))

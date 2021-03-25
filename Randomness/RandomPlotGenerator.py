@@ -60,7 +60,6 @@ def random_plot_generator(
                     parameter_values,
                     sim,
                     solution,
-                    output_variables,
                     parameter_number,
                 ) = foo.BaseModel(
                     current_function=current_function,
@@ -71,7 +70,7 @@ def random_plot_generator(
                     reference_temp=reference_temp,
                     parameter_number=parameter_number,
                 )
-                time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
+                time = foo1.plot_graph(solution, sim, reply=reply)
 
                 if not reply:
                     return parameter_values, time, parameter_number, None, None, None
@@ -89,7 +88,6 @@ def random_plot_generator(
                         number,
                         model,
                         parameter_values,
-                        output_variables,
                     ) = foo2.experiment_func()
                     experiment = pybamm.Experiment(cycle * number)
                 else:
@@ -97,7 +95,6 @@ def random_plot_generator(
                         cycle,
                         model,
                         parameter_values,
-                        output_variables,
                     ) = foo2.experiment_func(cycle)
                     experiment = pybamm.Experiment(cycle)
 
@@ -140,7 +137,7 @@ def random_plot_generator(
                         # feasible = False
                         repeat = True
 
-            time = foo1.plot_graph(solution, sim, output_variables, reply=reply)
+            time = foo1.plot_graph(solution, sim, reply=reply)
 
             if not reply:
                 return parameter_values, time, "experiment", cycle, Solver, number
