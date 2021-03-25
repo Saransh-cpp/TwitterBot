@@ -66,9 +66,8 @@ def experiment_func(cycle=None):
             print(cycleC * number)
             return cycleC, number, model, parameter_values
 
-        # elif cycle != None:
-        #     print("Cycle != None", cycle)
-        #     return cycle, model, parameter_values
+        elif cycle != None:
+            return cycle, model, parameter_values
 
 
 # def cccv_experiment():

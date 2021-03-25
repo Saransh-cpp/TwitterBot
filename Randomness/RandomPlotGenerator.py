@@ -30,14 +30,15 @@ def random_plot_generator(
     reply = True
 
     while True:
+        i = 1
 
         if choice == None:
-            choice = 1
+            choice = 0
             reply = False
 
         if choice == 0:
             if parameter_number == None:
-                parameter_number = random.randint(0, 1)
+                parameter_number = 1
 
             if parameter_number == 0:
                 current_function = random.uniform(0, 10)
@@ -56,12 +57,7 @@ def random_plot_generator(
                 reference_temp = random.uniform(273.18, 298.15)
 
             if lower_voltage < upper_voltage:
-                (
-                    parameter_values,
-                    sim,
-                    solution,
-                    parameter_number,
-                ) = foo.BaseModel(
+                (parameter_values, sim, solution, parameter_number,) = foo.BaseModel(
                     current_function=current_function,
                     upper_voltage=upper_voltage,
                     lower_voltage=lower_voltage,
@@ -84,19 +80,19 @@ def random_plot_generator(
                 if cycle == None:
                     reply = False
                     (
-                        cycle,
+                        cycleReceived,
                         number,
                         model,
                         parameter_values,
                     ) = foo2.experiment_func()
-                    experiment = pybamm.Experiment(cycle * number)
+                    experiment = pybamm.Experiment(cycleReceived * number)
                 else:
                     (
-                        cycle,
+                        cycleReceived,
                         model,
                         parameter_values,
                     ) = foo2.experiment_func(cycle)
-                    experiment = pybamm.Experiment(cycle)
+                    experiment = pybamm.Experiment(cycleReceived)
 
                 Solver = random.randint(0, 2)
 
@@ -112,14 +108,13 @@ def random_plot_generator(
                     sim = pybamm.Simulation(
                         model, experiment=experiment, solver=pybamm.CasadiSolver()
                     )
-                print("Simulated")
                 # else:
                 #     sim = pybamm.Simulation(
                 #         model,
                 #         experiment=experiment,
                 #         solver=pybamm.CasadiSolver(mode="fast with events"),
                 #     )
-                feasible = True
+                feasible = True  # Implement feasibility?
                 if not reply:
                     try:
                         sim.solve()
@@ -141,6 +136,13 @@ def random_plot_generator(
             time = foo1.plot_graph(solution, sim, reply=reply)
 
             if not reply:
-                return parameter_values, time, "experiment", cycle, Solver, number
+                return (
+                    parameter_values,
+                    time,
+                    "experiment",
+                    cycleReceived,
+                    Solver,
+                    number,
+                )
             elif reply:
                 return time, feasible
