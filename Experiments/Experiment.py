@@ -9,6 +9,7 @@ def experiment_func(cycle=None):
     charge = []
     discharge = []
     rest = []
+    hold = []
 
     model = pybamm.lithium_ion.DFN()
     parameter_values = model.default_parameter_values
@@ -16,41 +17,41 @@ def experiment_func(cycle=None):
     while True:
         vmin = random.uniform(3.1, 4.2)
         vmax = random.uniform(3.1, 4.2)
+        ccharge = random.uniform(0, 3)
+        cdischarge = random.uniform(0, 3)
         if cycle == None and vmin < vmax:
-            for i in range(1, 100):
-                if i % 10 != 0 and i % 3 != 0:
-                    discharge.append(
-                        # [
-                        "Discharge at " + str(i % 3) + " C until " + str(vmin) + " V",
-                        # "Discharge at "
-                        # + str(i % 3)
-                        # + " A for "
-                        # + str(i % 10)
-                        # + " minutes",
-                        # ]
-                    )
+            discharge.append(
+                # [
+                "Discharge at " + str(cdischarge) + " C until " + str(vmin) + " V",
+                # "Discharge at "
+                # + str(i % 3)
+                # + " A for "
+                # + str(i % 10)
+                # + " minutes",
+                # ]
+            )
 
-                    charge.append(
-                        # [
-                        "Charge at " + str(i % 3) + " C until " + str(vmax) + " V",
-                        # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
-                        # "Charge at "
-                        # + str(i % 3)
-                        # + " A for "
-                        # + str(i % 10)
-                        # + " minutes (1 minute period)",
-                        # ]
-                    )
+            charge.append(
+                # [
+                "Charge at " + str(ccharge) + " C until " + str(vmax) + " V",
+                # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
+                # "Charge at "
+                # + str(i % 3)
+                # + " A for "
+                # + str(i % 10)
+                # + " minutes (1 minute period)",
+                # ]
+            )
 
-                    rest.append(
-                        # [
-                        "Rest for " + str(i % 10) + " minutes",
-                        # ]
-                    )
-                    # "Hold at " + str(voltage) + " V for " + str(i % 10) + " minutes",
-                    # "Hold at 1 V for 20 seconds",
-                    # "Hold at 4.1 V until 50 mA",
-                    # "Hold at 3V until C/50",
+            rest.append(
+                # [
+                "Rest for " + str(random.randint(1, 10)) + " minutes",
+                # ]
+            )
+
+            hold.append(
+            "Hold at 4.1 V until 50 mA",
+            )
 
             random.shuffle(discharge)
             random.shuffle(rest)
@@ -58,9 +59,9 @@ def experiment_func(cycle=None):
 
             cycleC = []
 
-            cycleC.append(discharge[random.randint(0, 50)])
-            cycleC.append(rest[random.randint(0, 50)])
-            cycleC.append(charge[random.randint(0, 50)])
+            cycleC.append(discharge[0])
+            cycleC.append(rest[0])
+            cycleC.append(charge[0])
 
             number = random.randint(1, 3)
             print(cycleC * number)
