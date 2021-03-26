@@ -17,8 +17,8 @@ def experiment_func(cycle=None):
     while True:
         vmin = random.uniform(3.1, 4.2)
         vmax = random.uniform(3.1, 4.2)
-        ccharge = random.uniform(0, 3)
-        cdischarge = random.uniform(0, 3)
+        ccharge = random.randint(1, 5)
+        cdischarge = random.randint(1, 5)
         if cycle == None and vmin < vmax:
             discharge.append(
                 # [
