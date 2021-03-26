@@ -19,6 +19,7 @@ def experiment_func(cycle=None):
         vmax = random.uniform(3.1, 4.2)
         ccharge = random.randint(1, 5)
         cdischarge = random.randint(1, 5)
+        ccutoff = random.randint(1, 100)
         if cycle == None and vmin < vmax:
             discharge.append(
                 # [
@@ -44,13 +45,14 @@ def experiment_func(cycle=None):
             )
 
             rest.append(
-                # [
-                "Rest for " + str(random.randint(1, 10)) + " minutes",
-                # ]
+                [
+                    "Rest for " + str(random.randint(1, 10)) + " minutes",
+                    "Rest for " + str(random.randint(1, 10)) + " minutes",
+                ]
             )
 
             hold.append(
-            "Hold at 4.1 V until 50 mA",
+                "Hold at " + str(vmax) + " V until " + str(ccutoff) + " mA",
             )
 
             random.shuffle(discharge)
@@ -60,8 +62,12 @@ def experiment_func(cycle=None):
             cycleC = []
 
             cycleC.append(discharge[0])
-            cycleC.append(rest[0])
+            if random.randint(0, 1) == 0:
+                cycleC.append(rest[0][0])
             cycleC.append(charge[0])
+            cycleC.append(hold[0])
+            if random.randint(0, 1) == 0:
+                cycleC.append(rest[0][1])
 
             number = random.randint(1, 3)
             print(cycleC * number)
