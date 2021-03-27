@@ -2,6 +2,13 @@ import pybamm
 import pandas as pd
 import os
 import random
+import importlib
+
+spec = importlib.util.spec_from_file_location(
+    "single_decimal_point.py", "Utility/single_decimal_point.py"
+)
+foo = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(foo)
 
 
 def experiment_func(cycle=None):
@@ -15,8 +22,8 @@ def experiment_func(cycle=None):
     parameter_values = model.default_parameter_values
 
     while True:
-        vmin = single_decimal_point(3.1, 4.2, 0.1)
-        vmax = single_decimal_point(3.1, 4.2, 0.1)
+        vmin = foo.single_decimal_point(3.1, 4.2, 0.1)
+        vmax = foo.single_decimal_point(3.1, 4.2, 0.1)
         ccharge = random.randint(1, 5)
         cdischarge = random.randint(1, 5)
         ccutoff = random.randint(1, 100)
@@ -82,7 +89,7 @@ def cccv_experiment_cycle():
     charge = []
     discharge = []
     Hold = []
-    voltage = single_decimal_point(3.1, 4.2, 0.1)
+    voltage = foo.single_decimal_point(3.1, 4.2, 0.1)
 
     charge.append(
         # [
@@ -165,6 +172,6 @@ def cccv_experiment_cycle():
 #         except:
 #             pass
 #     return sol_US06_2, sol_US06_1, sim_US06_2, sim_US06_1
-    # A = model.param.I_typ
-    # omega = 0.1
-    # param["Current function [A]"] = my_fun(A,omega)
+# A = model.param.I_typ
+# omega = 0.1
+# param["Current function [A]"] = my_fun(A,omega)
