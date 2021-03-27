@@ -19,12 +19,16 @@ def plot_graph(solution, sim, t=None, reply=False, comparing=False):
     elif reply:
         plot.fig.savefig("replyFoo.png", dpi=300)
 
-    if comparing:
-        t = solution[0]["Time [s]"]
-        final_time = int(t.entries[len(t.entries) - 1])
-        plot = pybamm.QuickPlot(sim)
-        plot.plot(time)
-        plot.fig.savefig("foo.png", dpi=300)
+    # if comparing:
+    #     print(solution[0])
+    #     t = solution[0]["Time [s]"]
+    #     final_time = int(t.entries[len(t.entries) - 1])
+    #     time = random.randint(0, final_time)
+    #     plot = pybamm.QuickPlot(sim)
+    #     plot.plot(time)
+    #     plot.fig.savefig("foo.png", dpi=300)
+
+    
     # Below was the code to plot random output variables (not needed right now)
     # else:
     #     while True:
