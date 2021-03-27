@@ -4,6 +4,15 @@ import os
 import random
 
 
+def single_decimal_point():
+    start = 3.1
+    stop = 4.2
+    step = 0.1
+    precision = 0.1
+    f = 1 / precision
+    return random.randrange(start * f, stop * f, step * f) / f
+
+
 def experiment_func(cycle=None):
 
     charge = []
@@ -15,8 +24,8 @@ def experiment_func(cycle=None):
     parameter_values = model.default_parameter_values
 
     while True:
-        vmin = random.uniform(3.1, 4.2)
-        vmax = random.uniform(3.1, 4.2)
+        vmin = single_decimal_point()
+        vmax = single_decimal_point()
         ccharge = random.randint(1, 5)
         cdischarge = random.randint(1, 5)
         ccutoff = random.randint(1, 100)

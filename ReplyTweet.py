@@ -116,7 +116,7 @@ def reply_to_tweet():
                 + " I'm sorry, could you be a bit more specific (remember this is only the testing phase)",
                 singleMention.id,
             )
-
+## Function to sync last seen ID
 # def sync_last_seen_id():
 #     last_seen_id = retrieve_last_seen_id(FILE_NAME)
 #     mention = api.mentions_timeline(last_seen_id, tweet_mode="extended")
