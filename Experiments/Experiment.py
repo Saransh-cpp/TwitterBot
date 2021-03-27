@@ -5,7 +5,7 @@ import random
 import importlib
 
 spec = importlib.util.spec_from_file_location(
-    "single_decimal_point.py", "Utility/single_decimal_point.py"
+    "single_decimal_point.py", "Utils/single_decimal_point.py"
 )
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
