@@ -32,8 +32,8 @@ def random_plot_generator(
     while True:
 
         if choice == None:
-            # choice = random.randint(0, 1)
-            choice = 1
+            choice = random.randint(0, 1)
+            # choice = 2
             reply = False
 
         if choice == 0:
@@ -146,3 +146,11 @@ def random_plot_generator(
                 )
             elif reply:
                 return time, feasible
+
+        # elif choice == 2:
+        #     sol_US06_2, sol_US06_1, sim_US06_2, sim_US06_1 = foo2.cccv_experiment()
+        #     time = foo1.plot_graph(
+        #         solution=[sol_US06_1, sol_US06_2],
+        #         sim=[sim_US06_1, sim_US06_2],
+        #         comparing=True,
+        #     )

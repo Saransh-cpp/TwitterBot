@@ -4,10 +4,10 @@ import os
 import random
 
 
-def single_decimal_point():
-    start = 3.1
-    stop = 4.2
-    step = 0.1
+def single_decimal_point(start, stop, step):
+    start = start
+    stop = stop
+    step = step
     precision = 0.1
     f = 1 / precision
     return random.randrange(start * f, stop * f, step * f) / f
@@ -24,8 +24,8 @@ def experiment_func(cycle=None):
     parameter_values = model.default_parameter_values
 
     while True:
-        vmin = single_decimal_point()
-        vmax = single_decimal_point()
+        vmin = single_decimal_point(3.1, 4.2, 0.1)
+        vmax = single_decimal_point(3.1, 4.2, 0.1)
         ccharge = random.randint(1, 5)
         cdischarge = random.randint(1, 5)
         ccutoff = random.randint(1, 100)
@@ -86,57 +86,86 @@ def experiment_func(cycle=None):
             return cycle, model, parameter_values
 
 
-# def cccv_experiment():
+# def cccv_experiment_cycle():
 
 #     charge = []
 #     discharge = []
 #     Hold = []
-#     voltage = random.uniform(3.1, 4.1)
+#     voltage = single_decimal_point(3.1, 4.2, 0.1)
 
-#     for i in range(1, 100):
+#     charge.append(
+#         # [
+#         # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
+#         "Charge at " + str(random.randint(0, 4)) + " A until " + str(voltage) + " V",
+#         # ]
+#     )
 
-#         if i%4 != 0:
-
-#             charge.append(
-#                 # [
-#                     # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
-#                     "Charge at " + str(1) + " A until " + str(voltage) + " V",
-#                 # ]
-#             )
-
-#             Hold.append("Hold at " + str(voltage) + " V until 50 mA")
-#             # "Hold at 1 V for 20 seconds",
-#             # "Hold at 4.1 V until 50 mA",
-#             # "Hold at 3V until C/50",
+#     Hold.append(
+#         "Hold at " + str(voltage) + " V until " + random.randint(1, 100) + " mA"
+#     )
+#     # "Hold at 1 V for 20 seconds",
+#     # "Hold at 4.1 V until 50 mA",
+#     # "Hold at 3V until C/50",
 
 #     random.shuffle(discharge)
 #     random.shuffle(Hold)
 #     random.shuffle(charge)
 
 #     cycleC = []
-#     cycleC.append(charge[random.randint(0, 60)])
-#     cycleC.append(Hold[random.randint(0, 60)])
+#     cycleC.append(charge[0])
+#     cycleC.append(Hold[0])
 
 #     print(cycleC)
 #     return cycleC
 
 
-# random.shuffle(cycleC)
-# experiment = pybamm.Experiment(cycleC * 3)
+# def cccv_experiment():
+#     model = pybamm.lithium_ion.DFN()
+#     # import drive cycle from file
+#     drive_cycle = pd.read_csv("US06.csv", comment="#", header=None).to_numpy()
+#     # create interpolant
+#     param = model.default_parameter_values
+#     timescale = param.evaluate(model.timescale)
+#     current_interpolant = pybamm.Interpolant(
+#         drive_cycle[:, 0], drive_cycle[:, 1], timescale * pybamm.t
+#     )
+#     # set drive cycle
+#     param["Current function [A]"] = current_interpolant
 
-# # chemistry = pybamm.parameter_sets.Chen2020
-# # parameter_values = pybamm.ParameterValues(chemistry=chemistry)
+#     sim_US06_1 = pybamm.Simulation(
+#         model, parameter_values=param, solver=pybamm.CasadiSolver(mode="fast")
+#     )
+#     sol_US06_1 = sim_US06_1.solve()
 
-# model = pybamm.lithium_ion.DFN()
+#     solved = False
+#     print("REACHED")
+#     while not solved:
+#         try:
+#             print("TRYING")
+#             # cycle = cccv_experiment_cycle()
+#             # print(cycle)
+#             cycle = ["Charge at 1 A until 4.1 V", "Hold at 4.1 V until 50 mA"]
 
-# sim = pybamm.Simulation(model, experiment=experiment)
+#             experiment = pybamm.Experiment(cycle)
+#             sim_cccv = pybamm.Simulation(model, experiment=experiment)
+#             sol_cccv = sim_cccv.solve()
+#             new_model = model.set_initial_conditions_from(sol_cccv, inplace=False)
+#             sim_US06_2 = pybamm.Simulation(
+#                 new_model,
+#                 parameter_values=param,
+#                 solver=pybamm.CasadiSolver(mode="fast"),
+#             )
+#             sol_US06_2 = sim_US06_2.solve()
+#             pybamm.dynamic_plot(
+#                 [sol_US06_1, sol_US06_2],
+#                 labels=["Default initial conditions", "Fully charged"],
+#             )
+#             solved = True
 
-# sim.solve()
-# sim.plot()
+#         except:
+#             pass
 
-
-# while True:
-#     try:
-#         experiment_func()
-#     except:
-#         experiment_func()
+#     return sol_US06_2, sol_US06_1, sim_US06_2, sim_US06_1
+    # A = model.param.I_typ
+    # omega = 0.1
+    # param["Current function [A]"] = my_fun(A,omega)
