@@ -90,16 +90,13 @@ def cccv_experiment_cycle():
     discharge = []
     Hold = []
     voltage = foo.single_decimal_point(3.1, 4.2, 0.1)
-    
-    charge.append(
-        # [
-        # "Charge at " + str(i%3) + " C until " + str(voltage) + " V",
-        "Charge at " + str(random.randint(0, 4)) + " A until " + str(voltage) + " V",
-        # ]
-    )
+
+    current = random.randint(1, 4)
+
+    charge.append("Charge at " + str(current) + " A until " + str(voltage) + " V")
 
     Hold.append(
-        "Hold at " + str(voltage) + " V until " + random.randint(1, 100) + " mA"
+        "Hold at " + str(voltage) + " V until " + str(random.randint(1, 100)) + " mA"
     )
     # "Hold at 1 V for 20 seconds",
     # "Hold at 4.1 V until 50 mA",
@@ -112,6 +109,8 @@ def cccv_experiment_cycle():
     cycleC = []
     cycleC.append(charge[0])
     cycleC.append(Hold[0])
+
+    # cycleC = ["Charge at 1 A until 4.1 V", "Hold at 4.1 V until 50 mA"]
 
     print(cycleC)
     return cycleC
@@ -140,7 +139,6 @@ def cccv_experiment():
     while not solved:
         try:
             cycle = cccv_experiment_cycle()
-            # print(cycle)
             # cycle = ["Charge at 1 A until 4.1 V", "Hold at 4.1 V until 50 mA"]
 
             experiment = pybamm.Experiment(cycle)
@@ -162,7 +160,7 @@ def cccv_experiment():
             t = solution[0]["Time [s]"]
             final_time = int(t.entries[len(t.entries) - 1])
             time = random.randint(0, final_time)
-            plot = pybamm.QuickPlot(sim)
+            plot = pybamm.QuickPlot(sim, time_unit="seconds")
             plot.plot(time)
             plot.fig.savefig("foo.png", dpi=300)
             print(sol_US06_1)
@@ -170,8 +168,11 @@ def cccv_experiment():
 
         except:
             pass
+            # print("Exception")
     return time, cycle
+
+
 # A = model.param.I_typ
 # omega = 0.1
 # param["Current function [A]"] = my_fun(A,omega)
-cccv_experiment()
+# cccv_experiment()
