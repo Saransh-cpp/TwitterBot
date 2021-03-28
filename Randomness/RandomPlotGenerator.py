@@ -38,8 +38,8 @@ def random_plot_generator(
     while True:
 
         if choice == None:
-            # choice = random.randint(0, 1)
-            choice = 2
+            choice = random.randint(0, 2)
+            # choice = 2
             reply = False
 
         if choice == 0:
@@ -170,6 +170,6 @@ def random_plot_generator(
                 time,
                 "cccv experiment",
                 cycle,
-                "Casadi",
-                None,
+                1,
+                1,
             )

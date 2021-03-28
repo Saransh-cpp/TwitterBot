@@ -89,7 +89,7 @@ def cccv_experiment_cycle():
     charge = []
     discharge = []
     Hold = []
-    voltage = foo.single_decimal_point(3.1, 4.2, 0.1)
+    voltage = foo.single_decimal_point(3.8, 4.2, 0.1)
 
     current = random.randint(1, 4)
 
@@ -151,16 +151,20 @@ def cccv_experiment():
                 solver=pybamm.CasadiSolver(mode="fast"),
             )
             sol_US06_2 = sim_US06_2.solve()
-            pybamm.dynamic_plot(
-                [sol_US06_1, sol_US06_2],
-                labels=["Default initial conditions", "Fully charged"],
-            )
+            # pybamm.dynamic_plot(
+            #     [sol_US06_1, sol_US06_2],
+            #     labels=["Default initial conditions", "Fully charged"],
+            # )
             solution = [sol_US06_1, sol_US06_2]
             sim = [sim_US06_1, sim_US06_2]
             t = solution[0]["Time [s]"]
             final_time = int(t.entries[len(t.entries) - 1])
             time = random.randint(0, final_time)
-            plot = pybamm.QuickPlot(sim, time_unit="seconds")
+            plot = pybamm.QuickPlot(
+                sim,
+                labels=["Default initial conditions", "Fully charged"],
+                time_unit="seconds",
+            )
             plot.plot(time)
             plot.fig.savefig("foo.png", dpi=300)
             print(sol_US06_1)

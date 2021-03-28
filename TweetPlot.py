@@ -45,14 +45,14 @@ def tweet_graph():
     # +"with parameter values: " + str(parameter_values)
 
     # # Uncomment to tweet
-    # media = api.media_upload("foo.png")
-    # test_string = "https://github.com/Saransh-cpp/TwitterBot " + info_string
-    # tweet = test_string
+    media = api.media_upload("foo.png")
+    test_string = "https://github.com/Saransh-cpp/TwitterBot " + info_string
+    tweet = test_string
 
-    # api.update_status(status=tweet, media_ids=[media.media_id])
+    api.update_status(status=tweet, media_ids=[media.media_id])
 
-    # os.remove("foo.png")
-    # plt.clf()
+    os.remove("foo.png")
+    plt.clf()
 
 
 # Simulate tweeting process

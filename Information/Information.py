@@ -23,11 +23,16 @@ def information(parameter_number, cycle, solver):
         return "This is some basic information about Mohtat2020 parameters in a simple DFN model plotted using PyBaMM"
     elif parameter_number == "experiment":
         return (
-            # "Random experiment generated and plotted using PyBaMM. 
+            # "Random experiment generated and plotted using PyBaMM.
             "The experiment cycle- "
             + str(cycle)
             + ". Solver: "
             + solver_name
             + ", mode: "
             + mode
+        )
+    elif parameter_number == "cccv experiment":
+        return (
+            "Comparing 2 simulations, 1. Default initial condition, Drive cycle - https://github.com/pybamm-team/PyBaMM/blob/develop/pybamm/input/drive_cycles/US06.csv. 2. Fully charged using experiment - "
+            + str(cycle)
         )
