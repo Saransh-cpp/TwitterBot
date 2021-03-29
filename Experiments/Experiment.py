@@ -138,7 +138,7 @@ def US06_experiment():
     print("REACHED")
     while not solved:
         try:
-            cycle = cccv_experiment_cycle()
+            cycle = US06_experiment_cycle()
             # cycle = ["Charge at 1 A until 4.1 V", "Hold at 4.1 V until 50 mA"]
 
             experiment = pybamm.Experiment(cycle)

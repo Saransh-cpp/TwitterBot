@@ -161,7 +161,7 @@ def random_plot_generator(
             repeat = True
             while repeat:
                 try:
-                    time, cycle = foo2.cccv_experiment()
+                    time, cycleReceived = foo2.US06_experiment()
                     repeat = False
                 except:
                     pass
@@ -169,7 +169,7 @@ def random_plot_generator(
                 None,
                 time,
                 "cccv experiment",
-                cycle,
+                cycleReceived,
                 1,
                 1,
             )
