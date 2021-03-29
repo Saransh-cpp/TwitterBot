@@ -84,19 +84,19 @@ def experiment_func(cycle=None):
             return cycle, model, parameter_values
 
 
-def cccv_experiment_cycle():
+def US06_experiment_cycle():
 
     charge = []
     discharge = []
     Hold = []
     voltage = foo.single_decimal_point(3.8, 4.2, 0.1)
 
-    current = random.randint(1, 4)
+    current = random.randint(1, 2)
 
     charge.append("Charge at " + str(current) + " A until " + str(voltage) + " V")
 
     Hold.append(
-        "Hold at " + str(voltage) + " V until " + str(random.randint(1, 100)) + " mA"
+        "Hold at " + str(voltage) + " V until " + str(random.randint(40, 60)) + " mA"
     )
     # "Hold at 1 V for 20 seconds",
     # "Hold at 4.1 V until 50 mA",
@@ -116,7 +116,7 @@ def cccv_experiment_cycle():
     return cycleC
 
 
-def cccv_experiment():
+def US06_experiment():
     model = pybamm.lithium_ion.DFN()
     # import drive cycle from file
     drive_cycle = pd.read_csv("US06.csv", comment="#", header=None).to_numpy()
