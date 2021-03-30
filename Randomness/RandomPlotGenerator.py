@@ -118,12 +118,12 @@ def random_plot_generator(
                     sim = pybamm.Simulation(
                         model, experiment=experiment, solver=pybamm.CasadiSolver()
                     )
-                # else:
-                #     sim = pybamm.Simulation(
-                #         model,
-                #         experiment=experiment,
-                #         solver=pybamm.CasadiSolver(mode="fast with events"),
-                #     )
+                else:
+                    sim = pybamm.Simulation(
+                        model,
+                        experiment=experiment,
+                        solver=pybamm.CasadiSolver(mode="fast with events"),
+                    )
                 feasible = True  # Implement feasibility?
                 if not reply:
                     try:
