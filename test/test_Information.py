@@ -1,11 +1,11 @@
 import unittest
-import sys
+import importlib.util
 
-sys.path.append(
-    "C:\\Users\\Saransh\\Saransh_softwares\\Python Files\\TwitterBot\\InformationModule"
+spec = importlib.util.spec_from_file_location(
+    "Information.py", "InformationModule/Information.py"
 )
-from Information import information
-
+foo = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(foo)
 
 class TestInformation(unittest.TestCase):
     def setUp(self):
@@ -19,30 +19,27 @@ class TestInformation(unittest.TestCase):
             )
         ]
 
-    def tearDown(self):
-        sys.path.pop()
-
     def test_Information_with_no_solver(self):
         self.assertEqual(
-            information(0, None, None),
+            foo.information(0, None, None),
             "This is some basic information about Chen2020 parameters in a simple DFN model plotted using PyBaMM",
         )
         self.assertEqual(
-            information(1, None, None),
+            foo.information(1, None, None),
             "This is some basic information about Marquis2019 parameters in a simple DFN model plotted using PyBaMM",
         )
         self.assertEqual(
-            information(2, None, None),
+            foo.information(2, None, None),
             "This is some basic information about Ecker2015 parameters in a simple DFN model plotted using PyBaMM",
         )
         self.assertEqual(
-            information(3, None, None),
+            foo.information(3, None, None),
             "This is some basic information about Mohtat2020 parameters in a simple DFN model plotted using PyBaMM",
         )
 
     def test_Information_with_solver(self):
         self.assertEqual(
-            information("experiment", self.cccv_cycle, 1),
+            foo.information("experiment", self.cccv_cycle, 1),
             "The experiment cycle- "
             + str(self.cccv_cycle)
             + ". Solver:  "
@@ -51,7 +48,7 @@ class TestInformation(unittest.TestCase):
             + "fast",
         )
         self.assertEqual(
-            information("experiment", self.cccv_cycle, 2),
+            foo.information("experiment", self.cccv_cycle, 2),
             "The experiment cycle- "
             + str(self.cccv_cycle)
             + ". Solver:  "
@@ -60,7 +57,7 @@ class TestInformation(unittest.TestCase):
             + "safe",
         )
         self.assertEqual(
-            information("experiment", self.cccv_cycle, 3),
+            foo.information("experiment", self.cccv_cycle, 3),
             "The experiment cycle- "
             + str(self.cccv_cycle)
             + ". Solver:  "
@@ -69,7 +66,7 @@ class TestInformation(unittest.TestCase):
             + "fast with events",
         )
         self.assertEqual(
-            information("experiment", self.cccv_cycle, 0),
+            foo.information("experiment", self.cccv_cycle, 0),
             "The experiment cycle- "
             + str(self.cccv_cycle)
             + ". Solver: "
