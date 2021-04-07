@@ -1,4 +1,3 @@
-import pybamm
 import tweepy
 import time
 import matplotlib.pyplot as plt
@@ -68,9 +67,11 @@ def reply_to_tweet():
             if "model" in singleMention.full_text.lower():
                 if "dfn" in singleMention.full_text.lower():
                     if "chen2020" in singleMention.full_text.lower():
-                        parameter_values, time = foo.random_plot_generator(0, 0)
+                        (parameter_values, 
+                        time) = foo.random_plot_generator(0, 0)
                     elif "marquis2019" in singleMention.full_text.lower():
-                        parameter_values, time = foo.random_plot_generator(0, 1)
+                        (parameter_values, 
+                        time) = foo.random_plot_generator(0, 1)
                     if "experiment" in singleMention.full_text.lower():
                         experiment = singleMention.full_text.split("[")
                         experiment = experiment[1].split("]")
@@ -113,10 +114,13 @@ def reply_to_tweet():
             api.update_status(
                 "@"
                 + singleMention.user.screen_name
-                + " I'm sorry, could you be a bit more specific (remember this is only the testing phase)",
+                + " I'm sorry, could you be a bit more specific "
+                + "(remember this is only the testing phase)",
                 singleMention.id,
             )
-## Function to sync last seen ID
+
+
+# Function to sync last seen ID
 # def sync_last_seen_id():
 #     last_seen_id = retrieve_last_seen_id(FILE_NAME)
 #     mention = api.mentions_timeline(last_seen_id, tweet_mode="extended")
