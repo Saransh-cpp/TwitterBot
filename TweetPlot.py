@@ -12,7 +12,7 @@ foo1 = importlib.util.module_from_spec(spec1)
 spec1.loader.exec_module(foo1)
 
 spec2 = importlib.util.spec_from_file_location(
-    "Information.py", "Information/Information.py"
+    "Information.py", "InformationModule/Information.py"
 )
 foo2 = importlib.util.module_from_spec(spec2)
 spec2.loader.exec_module(foo2)

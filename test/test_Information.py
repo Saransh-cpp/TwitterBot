@@ -2,7 +2,7 @@ import unittest
 import sys
 
 sys.path.append(
-    "C:\\Users\\Saransh\\Saransh_softwares\\Python Files\\TwitterBot\\Information"
+    "C:\\Users\\Saransh\\Saransh_softwares\\Python Files\\TwitterBot\\InformationModule"
 )
 from Information import information
 

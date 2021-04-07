@@ -39,7 +39,7 @@ def random_plot_generator(
 
         if choice == None:
             choice = random.randint(0, 2)
-            # choice = 2
+            # choice = 1
             reply = False
 
         if choice == 0:
@@ -105,6 +105,7 @@ def random_plot_generator(
                     experiment = pybamm.Experiment(cycleReceived)
 
                 Solver = random.randint(0, 2)
+                # Solver = 2
 
                 if Solver == 0:
                     sim = pybamm.Simulation(model, experiment=experiment)
