@@ -7,6 +7,7 @@ spec = importlib.util.spec_from_file_location(
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
 
+
 class TestInformation(unittest.TestCase):
     def setUp(self):
         self.cccv_cycle = [
