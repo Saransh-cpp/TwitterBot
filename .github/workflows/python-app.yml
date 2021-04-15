@@ -29,9 +29,8 @@ jobs:
         python -m pip install pybamm
     - name: Run unit tests
       run: |
-        pip install flake8 pytest wheel codecov
+        pip install flake8 pytest wheel
         python -m unittest
-        codecov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -44,6 +43,7 @@ jobs:
         pip install pytest
         pip install pytest-cov
         pip install git+https://github.com/pybamm-team/PyBaMM@develop
+        pip install jax==0.1.75 jaxlib==0.1.52
         pytest --cov=./ --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
