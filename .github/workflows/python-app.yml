@@ -43,7 +43,7 @@ jobs:
         pip install pytest
         pip install pytest-cov
         pip install git+https://github.com/pybamm-team/PyBaMM@develop
-        pip install jax==0.1.75 jaxlib==0.1.52
+        pip install jax==0.1.75
         pytest --cov=./ --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
