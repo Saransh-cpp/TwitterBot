@@ -5,6 +5,6 @@
 
 A python twitter bot in development.
 
-Deployed on heroku! And it is working!
+Deployed on heroku! And it is working! (I do take it down a lot tho')
 
 Check out the bot [here](https://twitter.com/saranshchopra7)
