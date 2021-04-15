@@ -40,8 +40,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Generate coverage report
       run: |
-        pip install jax==0.2.12
-        pip install jaxlib==0.1.65
+        python -m pip install pybamm
         pip install coverage
         coverage run -m unittest
     - name: Upload coverage to Codecov
