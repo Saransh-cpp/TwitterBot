@@ -2,6 +2,7 @@ import unittest
 import pybamm
 import os
 import importlib.util
+import pytest
 
 spec = importlib.util.spec_from_file_location(
     "PlotGraph.py", "Randomness/PlotGraph.py"
@@ -9,7 +10,7 @@ spec = importlib.util.spec_from_file_location(
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
 
-
+@pytest.mark.skipif("True")
 class TestPlotting(unittest.TestCase):
 
     def setUp(self):
