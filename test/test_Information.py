@@ -1,6 +1,5 @@
 import unittest
 import importlib.util
-import pytest
 
 spec = importlib.util.spec_from_file_location(
     "Information.py", "InformationModule/Information.py"
@@ -8,7 +7,7 @@ spec = importlib.util.spec_from_file_location(
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
 
-@pytest.mark.skipif("True")
+
 class TestInformation(unittest.TestCase):
     def setUp(self):
         self.cccv_cycle = [

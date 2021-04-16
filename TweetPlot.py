@@ -1,4 +1,3 @@
-import pybamm
 import tweepy
 import time
 import matplotlib.pyplot as plt
@@ -26,6 +25,7 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
+
 def tweet_graph():
 
     (
@@ -38,7 +38,9 @@ def tweet_graph():
     ) = foo1.random_plot_generator()
     print(time_of_png)
     info_string = (
-        foo2.information(parameter_number, str(cycle) + " * " + str(number), solver)
+        foo2.information(
+            parameter_number, str(cycle) + " * " + str(number), solver
+            )
         + ", at time = "
         + str(time_of_png)
     )

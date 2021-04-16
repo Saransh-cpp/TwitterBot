@@ -86,7 +86,8 @@
 import pybamm
 import numpy as np
 import os
-os.chdir(pybamm.__path__[0]+'/..')
+
+os.chdir(pybamm.__path__[0] + "/..")
 
 # create the model
 model = pybamm.lithium_ion.DFN()

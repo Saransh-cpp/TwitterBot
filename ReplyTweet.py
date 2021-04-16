@@ -67,11 +67,15 @@ def reply_to_tweet():
             if "model" in singleMention.full_text.lower():
                 if "dfn" in singleMention.full_text.lower():
                     if "chen2020" in singleMention.full_text.lower():
-                        (parameter_values, 
-                        time) = foo.random_plot_generator(0, 0)
+                        (
+                            parameter_values,
+                            time
+                        ) = foo.random_plot_generator(0, 0)
                     elif "marquis2019" in singleMention.full_text.lower():
-                        (parameter_values, 
-                        time) = foo.random_plot_generator(0, 1)
+                        (
+                            parameter_values,
+                            time
+                        ) = foo.random_plot_generator(0, 1)
                     if "experiment" in singleMention.full_text.lower():
                         experiment = singleMention.full_text.split("[")
                         experiment = experiment[1].split("]")

@@ -1,6 +1,5 @@
 import pybamm
 import pandas as pd
-import os
 import random
 import importlib
 
@@ -27,10 +26,13 @@ def experiment_func(cycle=None):
         ccharge = random.randint(1, 5)
         cdischarge = random.randint(1, 5)
         ccutoff = random.randint(1, 100)
-        if cycle == None and vmin < vmax:
+        if cycle is None and vmin < vmax:
             discharge.append(
                 # [
-                "Discharge at " + str(cdischarge) + " C until " + str(vmin) + " V",
+                "Discharge at " +
+                str(cdischarge) +
+                " C until " +
+                str(vmin) + " V",
                 # "Discharge at "
                 # + str(i % 3)
                 # + " A for "
@@ -41,8 +43,12 @@ def experiment_func(cycle=None):
 
             charge.append(
                 # [
-                "Charge at " + str(ccharge) + " C until " + str(vmax) + " V",
-                # "Charge at " + str(i % 3) + " C until " + str(voltage) + " V",
+                "Charge at " +
+                str(ccharge) +
+                " C until " +
+                str(vmax) + " V",
+                # "Charge at " + str(i % 3) +
+                # " C until " + str(voltage) + " V",
                 # "Charge at "
                 # + str(i % 3)
                 # + " A for "
@@ -53,13 +59,20 @@ def experiment_func(cycle=None):
 
             rest.append(
                 [
-                    "Rest for " + str(random.randint(1, 10)) + " minutes",
-                    "Rest for " + str(random.randint(1, 10)) + " minutes",
+                    "Rest for "
+                    + str(random.randint(1, 10))
+                    + " minutes",
+                    "Rest for "
+                    + str(random.randint(1, 10))
+                    + " minutes",
                 ]
             )
 
             hold.append(
-                "Hold at " + str(vmax) + " V until " + str(ccutoff) + " mA",
+                "Hold at " +
+                str(vmax) +
+                " V until " +
+                str(ccutoff) + " mA",
             )
 
             random.shuffle(discharge)
@@ -80,7 +93,7 @@ def experiment_func(cycle=None):
             print(cycleC * number)
             return cycleC, number, model, parameter_values
 
-        elif cycle != None:
+        elif cycle is not None:
             return cycle, model, parameter_values
 
 
@@ -93,10 +106,18 @@ def US06_experiment_cycle():
 
     current = random.randint(1, 2)
 
-    charge.append("Charge at " + str(current) + " A until " + str(voltage) + " V")
+    charge.append(
+        "Charge at "
+        + str(current) +
+        " A until " +
+        str(voltage) + " V"
+        )
 
     Hold.append(
-        "Hold at " + str(voltage) + " V until " + str(random.randint(40, 60)) + " mA"
+        "Hold at " +
+        str(voltage) +
+        " V until " +
+        str(random.randint(40, 60)) + " mA"
     )
     # "Hold at 1 V for 20 seconds",
     # "Hold at 4.1 V until 50 mA",
@@ -139,12 +160,15 @@ def US06_experiment():
     while not solved:
         try:
             cycle = US06_experiment_cycle()
-            # cycle = ["Charge at 1 A until 4.1 V", "Hold at 4.1 V until 50 mA"]
+            # cycle = ["Charge at 1 A until 4.1 V",
+            # "Hold at 4.1 V until 50 mA"]
 
             experiment = pybamm.Experiment(cycle)
             sim_cccv = pybamm.Simulation(model, experiment=experiment)
             sol_cccv = sim_cccv.solve()
-            new_model = model.set_initial_conditions_from(sol_cccv, inplace=False)
+            new_model = model.set_initial_conditions_from(
+                sol_cccv, inplace=False
+                )
             sim_US06_2 = pybamm.Simulation(
                 new_model,
                 parameter_values=param,
@@ -172,7 +196,7 @@ def US06_experiment():
 
         except:
             pass
-            # print("Exception")
+            print("Exception")
     return time, cycle
 
 
