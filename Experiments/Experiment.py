@@ -10,6 +10,11 @@ spec = importlib.util.spec_from_file_location(
 foo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(foo)
 
+spec1 = importlib.util.spec_from_file_location(
+    "PlotGraph.py", "Randomness/PlotGraph.py"
+)
+foo1 = importlib.util.module_from_spec(spec1)
+spec1.loader.exec_module(foo1)
 
 def experiment_func(cycle=None):
 
@@ -116,10 +121,13 @@ def US06_experiment_cycle():
     return cycleC
 
 
-def US06_experiment():
+def US06_experiment(reply=False):
     model = pybamm.lithium_ion.DFN()
     # import drive cycle from file
-    drive_cycle = pd.read_csv("US06.csv", comment="#", header=None).to_numpy()
+    if reply: 
+        drive_cycle = pd.read_csv("drive_cycle.csv", comment="#", header=None).to_numpy()
+    elif not reply:
+        drive_cycle = pd.read_csv("US06.csv", comment="#", header=None).to_numpy()
     # create interpolant
     param = model.default_parameter_values
     timescale = param.evaluate(model.timescale)
@@ -133,6 +141,10 @@ def US06_experiment():
         model, parameter_values=param, solver=pybamm.CasadiSolver(mode="fast")
     )
     sol_US06_1 = sim_US06_1.solve()
+
+    if reply:
+        time = foo1.plot_graph(sol_US06_1, sim_US06_1, reply=reply)
+        return time
 
     solved = False
     print("REACHED")

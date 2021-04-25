@@ -159,6 +159,11 @@ def random_plot_generator(
                 return time, feasible
 
         elif choice == 2:
+
+            if reply:
+                time = foo2.US06_experiment(reply=reply)
+                return time
+
             repeat = True
             while repeat:
                 try:

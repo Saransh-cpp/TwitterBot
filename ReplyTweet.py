@@ -3,6 +3,7 @@ import time
 import matplotlib.pyplot as plt
 import importlib.util
 import os
+import gdown
 
 spec = importlib.util.spec_from_file_location(
     "RandomPlotGenerator.py.py", "Randomness/RandomPlotGenerator.py"
@@ -82,6 +83,15 @@ def reply_to_tweet():
                             choice=1, cycle=experiment
                         )
                         print("yes")
+                    if "drive cycle" in singleMention.full_text.lower():
+                        tweet = singleMention.full_text.split()
+                        link = tweet[-1]
+                        output = 'drive_cycle.csv'
+                        gdown.download(link, output, quiet=False)
+                        time = foo.random_plot_generator(
+                            choice=2
+                        )
+
 
             if feasible:
                 media = api.media_upload("replyFoo.png")
@@ -109,6 +119,7 @@ def reply_to_tweet():
                 )
 
             os.remove("replyFoo.png")
+            os.remove("drive_cycle.csv")
             plt.clf()
         else:
             api.update_status(
